@@ -1,8 +1,27 @@
 {
   "name": "coinifer-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Creating the tools to simplify the crypto market",
+    "engines": {
+    "node": "~12.11.1"
+  },
   "main": "index.js",
+  "scripts": {
+    "build-client": "webpack",
+    "build-client-watch": "webpack -w",
+    "deploy": "script/deploy",
+    "heroku-token": "script/encrypt-heroku-auth-token.js",
+    "lint": "eslint ./ --ignore-path .gitignore",
+    "lint-fix": "npm run lint -- --fix",
+    "prepare": "if [ -d .git ]; then npm-merge-driver install; fi",
+    "prettify": "prettier --write \"**/*.{js,jsx,json,css,scss,md}\"",
+    "postinstall": "touch secrets.js",
+    "seed": "node script/seed.js",
+    "start": "node server",
+    "start-dev": "NODE_ENV='development' npm run build-client-watch & NODE_ENV='development' npm run start-server",
+    "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
+    "test": "NODE_ENV='test' mocha \"./server/**/*.spec.js\" \"./client/**/*.spec.js\" \"./script/**/*.spec.js\" --require @babel/polyfill --require @babel/register"
+  },
   "dependencies": {
     "axios": "^0.21.1",
     "coingecko-api": "^1.0.10",
@@ -44,7 +63,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.4.0",
     "axios-mock-adapter": "^1.16.0",
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.0.5",
     "chai": "^4.2.0",
     "enzyme": "^3.9.0",
@@ -68,9 +87,6 @@
     "webpack": "^4.16.4",
     "webpack-cli": "^3.1.0",
     "yaml": "^1.6.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Alpay Aldemir",
