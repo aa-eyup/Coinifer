@@ -1,8 +1,8 @@
 {
-  "name": "coinifer-app",
+  "name": "coinifer",
   "version": "1.0.0",
   "description": "Creating the tools to simplify the crypto market",
-    "engines": {
+  "engines": {
     "node": "~12.11.1"
   },
   "main": "index.js",

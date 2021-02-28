@@ -1,57 +1,57 @@
-const CoinGecko = require('coingecko-api');
-const CoinGeckoClient = new CoinGecko();
+const CoinGecko = require('coingecko-api')
+const CoinGeckoClient = new CoinGecko()
 
 const fetchMarketData = async () => {
-  const data = await CoinGeckoClient.coins.fetchMarketChart('bitcoin');
-  console.log(data.data.total_volumes);
-};
+  const data = await CoinGeckoClient.coins.fetchMarketChart('bitcoin')
+  console.log(data.data.total_volumes)
+}
 //fetchMarketData();
 
 // --------------------------- categories ------------------------------
 // get ids of all coins and their category
 // return object format { id: categoriesArrray }
 const getCategories = async () => {
-  let coinIdArr = [];
-  let categories = {};
+  let coinIdArr = []
+  let categories = {}
   // CoinGecko => 6300 total coins
-  const data = (await CoinGeckoClient.coins.list()).data;
-  data.forEach((coinObj) => coinIdArr.push(coinObj.id));
-  console.log(data.length);
+  const data = (await CoinGeckoClient.coins.list()).data
+  data.forEach((coinObj) => coinIdArr.push(coinObj.id))
+  console.log(data.length)
   // nomics =>
   //
-};
+}
 //getCategories();
 
 // ----------------------- Volume ---------------------------------------------
 // volume data format: [UNIX timestep, volume in USD]
 // Xweek average daily volume / Xmo avg daily volume
 const dailyVolumeRatio = async (asset, ltr, str) => {
-  let newDate = new Date();
-  let to = Math.floor(newDate.getTime() / 1000);
-  let from = Math.floor(newDate.setDate(newDate.getDate() - 91) / 1000);
+  let newDate = new Date()
+  let to = Math.floor(newDate.getTime() / 1000)
+  let from = Math.floor(newDate.setDate(newDate.getDate() - 91) / 1000)
   // takes in UNIX timestamp
   const data = (
     await CoinGeckoClient.coins.fetchMarketChartRange(asset, {
       from,
       to,
     })
-  ).data;
-  let volumes = data.total_volumes;
-  let longTermVolumes = volumes.slice(volumes.lenght - ltr);
-  let shortTermVolumes = volumes.slice(volumes.length - str);
+  ).data
+  let volumes = data.total_volumes
+  let longTermVolumes = volumes.slice(volumes.lenght - ltr)
+  let shortTermVolumes = volumes.slice(volumes.length - str)
 
   let longTermDailyAvg =
-    longTermVolumes.reduce((acc, subArr) => subArr[1] + acc, 0) / ltr;
+    longTermVolumes.reduce((acc, subArr) => subArr[1] + acc, 0) / ltr
 
   let shortTermDailyAvg =
-    shortTermVolumes.reduce((acc, subArr) => subArr[1] + acc, 0) / str;
+    shortTermVolumes.reduce((acc, subArr) => subArr[1] + acc, 0) / str
 
   let ratio = +Number.parseFloat(
     shortTermDailyAvg / longTermDailyAvg
-  ).toPrecision(3);
-  console.log(ratio);
-  return ratio;
-};
+  ).toPrecision(3)
+  console.log(ratio)
+  return ratio
+}
 //dailyVolumeRatio('bitcoin', 30, 7);
 
 // -------------------------- 1 week price change -------------------------
@@ -118,11 +118,11 @@ public_interest_stats: { alexa_rank: 226414, bing_matches: null },
 */
 
 const fetchCoin = async (asset) => {
-  const data = await CoinGeckoClient.coins.fetch(asset, {});
-  console.log(' --------------- coins.fetch single coin -----------------');
-  console.log(data);
-};
-fetchCoin('ravencoin');
+  const data = await CoinGeckoClient.coins.fetch(asset, {})
+  console.log(' --------------- coins.fetch single coin -----------------')
+  console.log(data)
+}
+fetchCoin('ravencoin')
 
 // ------------------------- Coins List --------------------------------------
 // throttle limit breached -> how to get thhis data all at once?
@@ -132,9 +132,9 @@ fetchCoin('ravencoin');
 // total supply vs. circulating supply
 // *** only top 50 by mkt cap
 const allCoins = async () => {
-  const data = (await CoinGeckoClient.coins.all()).data;
-  console.log(' ---------------- All Coins ----------------');
-  console.log(data.length);
-  console.log(data.map((coinObj) => coinObj.id));
-};
+  const data = (await CoinGeckoClient.coins.all()).data
+  console.log(' ---------------- All Coins ----------------')
+  console.log(data.length)
+  console.log(data.map((coinObj) => coinObj.id))
+}
 //allCoins();
