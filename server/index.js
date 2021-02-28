@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
 module.exports = app
+const axios = require('axios')
 
 // This is a global Mocha hook, used for resource cleanup.
 // Otherwise, Mocha v4+ never quits after tests.
@@ -64,6 +65,7 @@ const createApp = () => {
   app.use(passport.session())
 
   // auth and api routes
+
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 

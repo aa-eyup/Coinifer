@@ -1,15 +1,90 @@
-APIs-------------------------------------------------
+---------------------------------- APIs  ------------------------------
 
 Bitquery.io: blockchain analytics
 
 CoinAPI.io: market symbols, assets, exchanges, OHLC+Volume data
 - trades data only for free version
 
-*CoinGecko: prices, volume, mkt cap, community growth, on-chain metrics
+*CoinGecko: ------------------------------------------------------------
+prices, volume, mkt cap, community growth, on-chain metrics
 widgets for containers of charts
 
-*nomics
+// block time, hashing algo, categories
+
+// description property
+// .description.en => ?innetHTML format?
+// image property
+/*
+thumb, small, large
+*/
+
+// market_data property
+/*
+market_cap_rank
+*/
+
+// community_data property
+/*
+facebook_likes: null,
+twitter_followers: 46593,
+reddit_average_posts_48h: 8.273,
+reddit_average_comments_48h: 118.727,
+reddit_subscribers: 21932,
+reddit_accounts_active_48h: 635,
+telegram_channel_user_count: 10909
+*/
+
+// developer_data property
+/*
+forks: 494,
+stars: 706,
+subscribers: 204,
+total_issues: 335,
+closed_issues: 239,
+pull_requests_merged: 414,
+pull_request_contributors: 35,
+code_additions_deletions_4_weeks: [Object],
+commit_count_4_weeks: 0,
+last_4_weeks_commit_activity_series: []
+*/
+
+// Other properties
+/*
+genesis_date: '2018-01-03',
+
+sentiment_votes_up_percentage: 66.93,
+developer_score: 68.815,
+community_score: 53.554,
+
+market_cap_rank: 64,
+coingecko_rank: 21,
+coingecko_score: 58.351,
+
+liquidity_score: 70.007,
+
+public_interest_score: 0.018,
+public_interest_stats: { alexa_rank: 226414, bing_matches: null },
+
+*nomics ------------------------------------------------------------
 circulating supply, max supply
 logo url
 number of exchanges
 social media urls
+
+*LunarCRUSH ------------------------------------------------------------
+sentiment
+sentiment_relative
+
+***Messari ------------------------------------------------------------
+https://data.messari.io/api/v2/assets
+  marketcap.volume_turnover
+  mining_stats: hashrate,
+  developer_activity: watchers, commits_last_1_year
+  risk_metrics.sharpe_ratios
+  on_chain_data: txn_count_last_24_hours, median_fee_usd
+  profile.overview.project_details
+  **Investors.organization -> forEach .name
+  **ecosystem.organizations -> forEach .name
+
+VWAP???
+

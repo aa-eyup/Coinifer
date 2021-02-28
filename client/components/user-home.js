@@ -11,6 +11,8 @@ export const UserHome = props => {
   return (
     <div>
       <h3>Welcome, {email}</h3>
+      <button type="button">Test nomics</button>
+      <button type="button">Test CryptoGecko</button>
     </div>
   )
 }
