@@ -1,0 +1,15 @@
+APIs-------------------------------------------------
+
+Bitquery.io: blockchain analytics
+
+CoinAPI.io: market symbols, assets, exchanges, OHLC+Volume data
+- trades data only for free version
+
+*CoinGecko: prices, volume, mkt cap, community growth, on-chain metrics
+widgets for containers of charts
+
+*nomics
+circulating supply, max supply
+logo url
+number of exchanges
+social media urls
