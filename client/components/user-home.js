@@ -1,36 +1,42 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {fetchMessariData} from '../store/apiDataStore'
 
-/**
- * COMPONENT
- */
-export const UserHome = props => {
-  const {email} = props
-
-  return (
-    <div>
-      <h3>Welcome, {email}</h3>
-      <button type="button">Test nomics</button>
-      <button type="button">Test CryptoGecko</button>
-    </div>
-  )
-}
-
-/**
- * CONTAINER
- */
-const mapState = state => {
-  return {
-    email: state.user.email
+class UserHome extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+  componentDidMount() {
+    this.props.fetchMessariData()
+  }
+  render() {
+    console.log(this.props.messariData[0])
+    const {email} = this.props
+    return (
+      <div>
+        <h3>Welcome, {email}</h3>
+      </div>
+    )
   }
 }
 
-export default connect(mapState)(UserHome)
+const mapState = state => {
+  return {
+    email: state.user.email,
+    messariData: state.apiData.messariData
+  }
+}
 
-/**
- * PROP TYPES
- */
+const mapDispatch = dispatch => {
+  return {
+    fetchMessariData: () => dispatch(fetchMessariData())
+  }
+}
+
+export default connect(mapState, mapDispatch)(UserHome)
+
 UserHome.propTypes = {
   email: PropTypes.string
 }
