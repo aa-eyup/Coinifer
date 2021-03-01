@@ -1,22 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {fetchMessariData} from '../store/apiDataStore'
+import Grid from './grid'
 
 class UserHome extends React.Component {
   constructor(props) {
     super(props)
     this.state = {}
   }
-  componentDidMount() {
-    this.props.fetchMessariData()
-  }
+
   render() {
-    console.log(this.props.messariData[0])
     const {email} = this.props
     return (
       <div>
         <h3>Welcome, {email}</h3>
+        <Grid />
       </div>
     )
   }
@@ -24,18 +22,11 @@ class UserHome extends React.Component {
 
 const mapState = state => {
   return {
-    email: state.user.email,
-    messariData: state.apiData.messariData
+    email: state.user.email
   }
 }
 
-const mapDispatch = dispatch => {
-  return {
-    fetchMessariData: () => dispatch(fetchMessariData())
-  }
-}
-
-export default connect(mapState, mapDispatch)(UserHome)
+export default connect(mapState)(UserHome)
 
 UserHome.propTypes = {
   email: PropTypes.string
