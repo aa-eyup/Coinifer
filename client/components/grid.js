@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {fetchMessariData} from '../store/apiDataStore'
+import {fetchCoinpaperData} from '../store/apiDataStore'
+import CryptoBlock from './cryptoBlock'
 
 class Grid extends React.Component {
   constructor(props) {
@@ -10,24 +11,32 @@ class Grid extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchMessariData()
+    this.props.fetchCoinpaperData()
   }
 
   render() {
-    console.log(this.props.messariData)
-    return <div>Hello from Grid</div>
+    console.log(this.props.coinpaperData)
+    return (
+      <div id="container">
+        <div id="cryptos-grid">
+          {this.props.coinpaperData.map(crypto => (
+            <CryptoBlock key={crypto.id} crypto={crypto} />
+          ))}
+        </div>
+      </div>
+    )
   }
 }
 
 const mapState = state => {
   return {
-    messariData: state.apiData.messariData
+    coinpaperData: state.apiData.coinpaperData
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    fetchMessariData: () => dispatch(fetchMessariData())
+    fetchCoinpaperData: () => dispatch(fetchCoinpaperData())
   }
 }
 

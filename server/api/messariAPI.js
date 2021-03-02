@@ -19,15 +19,28 @@ const got = require('got')
 ]
 */
 router.get('/', async (req, res, next) => {
-  const data = await got.get('https://data.messari.io/api/v2/assets').json()
-  res.send(data.data)
+  try {
+    const data = await got.get('https://data.messari.io/api/v2/assets').json()
+    res.status(200).send(data.data)
+  } catch (error) {
+    next(error)
+  }
 })
 
-// v2/assets/${symbol}/profile
-// v1/assets/${symbol}/metrics
-// v1/assets/${symbol}/market-data
-/*
-const data = await got
-  .get('https://data.messari.io/api/v2/assets/rvn/profile')
-  .json()
-*/
+router.get('/:id', async (req, res, next) => {
+  try {
+    const {id} = req.params
+    const profileData = await got
+      .get(`https://data.messari.io/api/v2/assets/${id}/profile`)
+      .json()
+
+    // assetMetrics inclused .market_data
+    const assetMetrics = await got
+      .get(`https://data.messari.io/api/v1/assets/${id}/metrics`)
+      .json()
+
+    res.status(200).send(assetMetrics.data)
+  } catch (error) {
+    next(error)
+  }
+})
