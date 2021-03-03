@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import Grid from './grid'
+import Grid from './Grid'
 
 class UserHome extends React.Component {
   constructor(props) {

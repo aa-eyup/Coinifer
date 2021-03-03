@@ -45,7 +45,6 @@ export const fetchCoinpaperData = () => {
       const data = (
         await axios.get('https://static.coinpaper.io/api/coins.json')
       ).data
-      console.log(data)
       dispatch(getCoinpaperData(data))
     } catch (error) {
       console.log(error)
@@ -54,11 +53,10 @@ export const fetchCoinpaperData = () => {
 }
 
 export const fetchMessariSingleCoin = id => {
-  console.log('fetch single')
   return async dispatch => {
     try {
-      const data = (await axios.get(`/api/messariAPI/${id}`)).data
-      dispatch(getMessariSingleCoin(data))
+      const data = await axios.get(`/api/messariAPI/${id}`)
+      dispatch(getMessariSingleCoin(data.data))
     } catch (error) {
       console.log(error)
     }

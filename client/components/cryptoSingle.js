@@ -14,12 +14,11 @@ class CryptoSingle extends React.Component {
 
   componentDidMount() {
     // get id from props.match.params (should be coinpaper .symbol -> .toLowercase())
-    console.log('single componentDidMount')
-    const id = this.props.match.params.coinpaperId.toLowerCase()
+    const id = this.props.match.params.coinId.toLowerCase()
     this.props.fetchMessariSingleCoin(id)
   }
   render() {
-    console.log(this.props.messariSingleCoin)
+    console.log('single', this.props.messariSingleCoin)
     return <div></div>
   }
 }

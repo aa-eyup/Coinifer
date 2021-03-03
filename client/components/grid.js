@@ -15,7 +15,7 @@ class Grid extends React.Component {
   }
 
   render() {
-    console.log(this.props.coinpaperData)
+    console.log('all', this.props.coinpaperData)
     return (
       <div id="container">
         <div id="cryptos-grid">

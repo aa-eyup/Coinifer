@@ -88,3 +88,6 @@ https://data.messari.io/api/v2/assets
 
 VWAP???
 
+************************** cryptoSingle View **************************
+
+
