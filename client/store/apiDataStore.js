@@ -55,7 +55,7 @@ export const fetchCoinpaperData = () => {
 export const fetchMessariSingleCoin = id => {
   return async dispatch => {
     try {
-      const data = await axios.get(`/api/messariAPI/${id}`)
+      const data = await axios.get(`/api/messariAPI/coins/${id}`)
       dispatch(getMessariSingleCoin(data.data))
     } catch (error) {
       console.log(error)
@@ -65,17 +65,17 @@ export const fetchMessariSingleCoin = id => {
 
 // reducer
 const initialState = {
-  messariData: [],
+  messariAllCoinsData: [],
   messariSingleCoin: {},
-  coinpaperData: []
+  coinpaperAllCoinsData: []
 }
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_MESSARI_DATA:
-      return {...state, messariData: action.data}
+      return {...state, messariAllCoinsData: action.data}
     case GET_TOP100_DATA:
-      return {...state, coinpaperData: action.data}
+      return {...state, coinpaperAllCoinsData: action.data}
     case GET_MESSARI_SINGLE:
       return {...state, messariSingleCoin: action.data}
     default:

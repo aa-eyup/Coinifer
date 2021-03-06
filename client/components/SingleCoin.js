@@ -14,8 +14,8 @@ class CryptoSingle extends React.Component {
 
   componentDidMount() {
     // get id from props.match.params (should be coinpaper .symbol -> .toLowercase())
-    const id = this.props.match.params.coinId.toLowerCase()
-    this.props.fetchMessariSingleCoin(id)
+    const coinId = this.props.match.params.coinId.toLowerCase()
+    this.props.fetchMessariSingleCoin(coinId)
   }
   render() {
     console.log('single', this.props.messariSingleCoin)
@@ -31,7 +31,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchMessariSingleCoin: id => dispatch(fetchMessariSingleCoin(id))
+    fetchMessariSingleCoin: coinId => dispatch(fetchMessariSingleCoin(coinId))
   }
 }
 export default connect(mapState, mapDispatch)(CryptoSingle)

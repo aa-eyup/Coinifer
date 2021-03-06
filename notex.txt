@@ -1,9 +1,14 @@
 ---------------------------------- APIs  ------------------------------
 
-Bitquery.io: blockchain analytics
+Top 100:
+coinpaper
 
-CoinAPI.io: market symbols, assets, exchanges, OHLC+Volume data
-- trades data only for free version
+Single View:
+messari get single
+
+Spiderchart:
+messari get single
+
 
 *CoinGecko: ------------------------------------------------------------
 prices, volume, mkt cap, community growth, on-chain metrics

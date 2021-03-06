@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {fetchCoinpaperData} from '../store/apiDataStore'
-import CryptoBlock from './cryptoBlock'
+import CoinCell from './CoinCell'
 
-class Grid extends React.Component {
+class CoinGrid extends React.Component {
   constructor(props) {
     super(props)
     this.state = {}
@@ -20,7 +20,7 @@ class Grid extends React.Component {
       <div id="container">
         <div id="cryptos-grid">
           {this.props.coinpaperData.map(crypto => (
-            <CryptoBlock key={crypto.id} crypto={crypto} />
+            <CoinCell key={crypto.id} crypto={crypto} />
           ))}
         </div>
       </div>
@@ -30,7 +30,7 @@ class Grid extends React.Component {
 
 const mapState = state => {
   return {
-    coinpaperData: state.apiData.coinpaperData
+    coinpaperData: state.apiData.coinpaperAllCoinsData
   }
 }
 
@@ -40,4 +40,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Grid)
+export default connect(mapState, mapDispatch)(CoinGrid)

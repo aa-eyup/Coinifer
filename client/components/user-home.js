@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import Grid from './Grid'
 
 class UserHome extends React.Component {
   constructor(props) {
@@ -14,7 +13,6 @@ class UserHome extends React.Component {
     return (
       <div>
         <h3>Welcome, {email}</h3>
-        <Grid />
       </div>
     )
   }

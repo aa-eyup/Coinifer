@@ -9,7 +9,7 @@ class CryptoBlock extends React.Component {
   render() {
     const {crypto} = this.props
     return (
-      <Link to={`/coin/${crypto.symbol}`}>
+      <Link to={`/coins/${crypto.symbol}`}>
         <div>{`${crypto.name}`}</div>
       </Link>
     )

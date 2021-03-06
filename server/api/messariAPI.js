@@ -26,18 +26,18 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/coins/:coinId', async (req, res, next) => {
   try {
-    const {id} = req.params
+    const {coinId} = req.params
     const profileData = (
       await got
-        .get(`https://data.messari.io/api/v2/assets/${id}/profile`)
+        .get(`https://data.messari.io/api/v2/assets/${coinId}/profile`)
         .json()
     ).data
     // assetMetrics inclused .market_data
     const assetMetrics = (
       await got
-        .get(`https://data.messari.io/api/v1/assets/${id}/metrics`)
+        .get(`https://data.messari.io/api/v1/assets/${coinId}/metrics`)
         .json()
     ).data
     const data = {...profileData, ...assetMetrics}
