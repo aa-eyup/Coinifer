@@ -1,19 +1,17 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import CoinSpiderChart from './CoinSpiderChart'
 
-class CryptoBlock extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-  render() {
-    const {crypto} = this.props
-    return (
+const CoinCell = props => {
+  const {crypto} = props
+  console.log(crypto)
+  return (
+    <div id="coin-cell">
       <Link to={`/coins/${crypto.symbol}`}>
         <div>{`${crypto.name}`}</div>
       </Link>
-    )
-  }
+      <CoinSpiderChart symbol={crypto.symbol} id={crypto.id} />
+    </div>
+  )
 }
-
-export default CryptoBlock
+export default CoinCell

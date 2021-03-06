@@ -12,13 +12,12 @@ const getMessariData = data => {
     data
   }
 }
-const getCoinpaperData = data => {
+const getTopOneHundred = data => {
   return {
     type: GET_TOP100_DATA,
     data
   }
 }
-
 const getMessariSingleCoin = data => {
   return {
     type: GET_MESSARI_SINGLE,
@@ -31,27 +30,30 @@ export const fetchMessariData = () => {
   return async dispatch => {
     try {
       const data = (await axios.get('/api/messariAPI')).data
-      console.log(data)
       dispatch(getMessariData(data))
     } catch (error) {
       console.log(error)
     }
   }
 }
-
-export const fetchCoinpaperData = () => {
+export const fetchTopOneHundred = () => {
   return async dispatch => {
     try {
-      const data = (
-        await axios.get('https://static.coinpaper.io/api/coins.json')
-      ).data
-      dispatch(getCoinpaperData(data))
+      // CoinGecko
+      const data = (await axios.get('/api/cgcAPI/coins')).data
+      /*
+      // all 6k+ coins from CGC
+          const data = await axios.get(
+        'https://api.coingecko.com/api/v3/simple/price'
+      )
+      */
+      // coinpaper api send lighter load
+      dispatch(getTopOneHundred(data))
     } catch (error) {
       console.log(error)
     }
   }
 }
-
 export const fetchMessariSingleCoin = id => {
   return async dispatch => {
     try {
@@ -67,7 +69,7 @@ export const fetchMessariSingleCoin = id => {
 const initialState = {
   messariAllCoinsData: [],
   messariSingleCoin: {},
-  coinpaperAllCoinsData: []
+  topOneHundred: []
 }
 
 export default function(state = initialState, action) {
@@ -75,7 +77,7 @@ export default function(state = initialState, action) {
     case GET_MESSARI_DATA:
       return {...state, messariAllCoinsData: action.data}
     case GET_TOP100_DATA:
-      return {...state, coinpaperAllCoinsData: action.data}
+      return {...state, topOneHundred: action.data}
     case GET_MESSARI_SINGLE:
       return {...state, messariSingleCoin: action.data}
     default:
