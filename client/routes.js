@@ -25,12 +25,12 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
             <Route
-              path="/coins/:coinId"
-              render={routProps => <SingleCoin {...routProps} />}
+              path="/coins/page/:pageNumber"
+              render={routProps => <CoinGrid {...routProps} />}
             />
             <Route
-              path="/coins"
-              render={routProps => <CoinGrid {...routProps} />}
+              path="/coins/:coinId"
+              render={routProps => <SingleCoin {...routProps} />}
             />
           </Switch>
         )}
