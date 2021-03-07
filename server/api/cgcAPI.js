@@ -20,6 +20,25 @@ router.get('/coins', async (req, res, next) => {
     next(error)
   }
 })
+router.get('/coins/page/:pageNumber', async (req, res, next) => {
+  try {
+    const {pageNumber} = req.params
+    if (pageNumber > 0 && pageNumber <= 10) {
+      const data = (
+        await CoinGeckoClient.coins.all({
+          per_page: 10,
+          page: pageNumber,
+          localization: false
+        })
+      ).data
+      res.status(200).send(data)
+    } else {
+      res.sendStatus(204)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
 
 router.get('/coins/:coinId', async (req, res, next) => {
   try {

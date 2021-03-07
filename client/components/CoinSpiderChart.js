@@ -12,8 +12,13 @@ class SpiderChart extends React.Component {
     this.props.fetchSpiderChartData(this.props.symbol, this.props.id)
   }
   render() {
-    console.log('spiderchart state', this.props.spiderChartData)
-    return <div>Spider Chart goes here: {this.props.symbol}</div>
+    const data = this.props.spiderChartData[this.props.symbol]
+    if (data) {
+      //console.log('spiderchart state', this.props.spiderChartData)
+      return <div>Spider Chart goes here: {this.props.symbol}</div>
+    } else {
+      return <div>loading chart...</div>
+    }
   }
 }
 

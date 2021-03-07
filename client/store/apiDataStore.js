@@ -36,11 +36,12 @@ export const fetchMessariData = () => {
     }
   }
 }
-export const fetchTopOneHundred = () => {
+export const fetchTopOneHundred = pageNumber => {
   return async dispatch => {
     try {
       // CoinGecko
-      const data = (await axios.get('/api/cgcAPI/coins')).data
+      const data = (await axios.get(`/api/cgcAPI/coins/page/${pageNumber}`))
+        .data
       /*
       // all 6k+ coins from CGC
           const data = await axios.get(

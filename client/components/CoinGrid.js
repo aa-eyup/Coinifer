@@ -11,19 +11,20 @@ class CoinGrid extends React.Component {
   }
 
   componentDidMount() {
-    console.log('grid component mounts ========================')
-    this.props.fetchTopOneHundred()
+    const {pageNumber} = this.props.match.params
+    console.log(
+      'grid component mounts ======================== page ',
+      pageNumber
+    )
+    this.props.fetchTopOneHundred(this.props.match.params.pageNumber)
   }
 
   render() {
-    const page = +this.props.match.params.pageNumber
-    const start = 10 * (page - 1)
-    const end = 10 * page
     console.log('all', this.props.topOneHundred)
     return (
       <div id="container">
         <div id="cryptos-grid">
-          {this.props.topOneHundred.slice(start, end).map(crypto => (
+          {this.props.topOneHundred.map(crypto => (
             <CoinCell key={crypto.id} crypto={crypto} />
           ))}
         </div>
@@ -40,7 +41,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchTopOneHundred: () => dispatch(fetchTopOneHundred())
+    fetchTopOneHundred: pageNumber => dispatch(fetchTopOneHundred(pageNumber))
   }
 }
 
