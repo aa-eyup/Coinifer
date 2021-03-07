@@ -10,7 +10,7 @@ const CoinCell = props => {
       <Link to={`/coins/${crypto.symbol}`}>
         <div>{`${crypto.name}`}</div>
       </Link>
-      <CoinSpiderChart symbol={crypto.symbol} id={crypto.id} />
+      {/* <CoinSpiderChart symbol={crypto.symbol} id={crypto.id} /> */}
     </div>
   )
 }
