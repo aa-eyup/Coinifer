@@ -5,6 +5,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchMessariProfile} from '../store/apiDataStore'
+import {fetchSpiderChartData} from '../store/spiderChartStore'
 
 class CryptoSingle extends React.Component {
   constructor(props) {
@@ -15,7 +16,6 @@ class CryptoSingle extends React.Component {
   componentDidMount() {
     // get id from props.match.params (should be coinpaper .symbol -> .toLowercase())
     const coinId = this.props.match.params.coinId.toLowerCase()
-
     // fetch only profile data => THE SPIDER CHART MOUNT CALLS FOR METRICS DATA
     this.props.fetchMessariProfile(coinId)
   }
@@ -34,7 +34,9 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchMessariProfile: coinId => dispatch(fetchMessariProfile(coinId))
+    fetchMessariProfile: coinId => dispatch(fetchMessariProfile(coinId)),
+    fetchSpiderChartData: (symbol, id) =>
+      dispatch(fetchSpiderChartData(symbol, id))
   }
 }
 export default connect(mapState, mapDispatch)(CryptoSingle)

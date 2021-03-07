@@ -30,7 +30,7 @@ class Routes extends Component {
               render={routProps => <CoinGrid {...routProps} />}
             />
             <Route
-              path="/coins/:coinId"
+              path="/coins/:coinId/profile"
               render={routProps => <SingleCoin {...routProps} />}
             />
           </Switch>

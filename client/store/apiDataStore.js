@@ -3,7 +3,7 @@ import axios from 'axios'
 // action type
 const GET_MESSARI_DATA = 'GET_MESSARI_DATA'
 const GET_TOP100_DATA = 'GET_TOP100_COINPAPER'
-const GET_MESSARI_SINGLE = 'GET_MESSARI_SINGLE'
+const GET_SINGLE_COIN = 'GET_SINGLE_COIN'
 const GET_MESSARI_PROFILE = 'GET_MESSARI_PROFILE'
 
 // action creator
@@ -19,9 +19,9 @@ const getTopOneHundred = data => {
     data
   }
 }
-const getMessariSingleCoin = data => {
+const getSingleCoin = data => {
   return {
-    type: GET_MESSARI_SINGLE,
+    type: GET_SINGLE_COIN,
     data
   }
 }
@@ -62,11 +62,11 @@ export const fetchTopOneHundred = pageNumber => {
     }
   }
 }
-export const fetchMessariSingleCoin = id => {
+export const fetchSingleCoin = id => {
   return async dispatch => {
     try {
       const data = (await axios.get(`/api/messariAPI/coins/${id}`)).data
-      dispatch(getMessariSingleCoin(data))
+      dispatch(getSingleCoin(data))
     } catch (error) {
       console.log(error)
     }
@@ -87,7 +87,7 @@ export const fetchMessariProfile = id => {
 const initialState = {
   messariAllCoinsData: [],
   messariProfile: {},
-  messariSingleCoin: {},
+  singleCoin: {},
   topOneHundred: []
 }
 
@@ -97,8 +97,8 @@ export default function(state = initialState, action) {
       return {...state, messariAllCoinsData: action.data}
     case GET_TOP100_DATA:
       return {...state, topOneHundred: action.data}
-    case GET_MESSARI_SINGLE:
-      return {...state, messariSingleCoin: action.data}
+    case GET_SINGLE_COIN:
+      return {...state, singleCoin: action.data}
     case GET_MESSARI_PROFILE:
       return {...state, messariProfile: action.data}
     default:
