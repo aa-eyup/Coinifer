@@ -22,9 +22,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           </div>
           <div className="navbar-menu">
             <div className="navbar-start">
-              <Link to="/home" className="navbar-item">
-                Home
-              </Link>
               <Link to="/coins/page/1" className="navbar-item">
                 Top 100 Assets
               </Link>

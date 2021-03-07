@@ -1,5 +1,7 @@
 body {
   font-family: sans-serif;
+  position: relative;
+  padding-bottom: 6rem;
 }
 
 a {
@@ -14,6 +16,9 @@ nav a {
   display: inline-block;
   margin: 1em;
 }
+.navbar-brand a {
+  color: rgb(36, 225, 96);
+}
 
 form div {
   margin: 1em;
@@ -24,6 +29,18 @@ form div {
   width: 100%;
   text-align: center;
   font-size: 0.8em;
-  color: #eee;
+  color: rgb(36, 225, 96);
   padding-top: 6px;
+  width: 100%;
+}
+/* ------------------------------- GRID --------------------------------- */
+
+#grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+#coin-cell {
+  padding: 5px;
+  min-width: 400px;
 }

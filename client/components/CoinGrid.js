@@ -23,7 +23,7 @@ class CoinGrid extends React.Component {
     console.log('all', this.props.topOneHundred)
     return (
       <div id="container">
-        <div id="cryptos-grid">
+        <div id="grid">
           {this.props.topOneHundred.map(crypto => (
             <CoinCell key={crypto.id} crypto={crypto} />
           ))}
