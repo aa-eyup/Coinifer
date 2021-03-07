@@ -41,6 +41,7 @@ router.get('/coins/:coinId', async (req, res, next) => {
     ).data
     const data = {...assetMetricsKey.data}
     const filtered = {
+      slug: data.slug,
       hashRate: data.mining_stats,
       avgDifficulty: data.average_difficulty,
       sharpeRatio: data.risk_metrics.sharpe_ratios,
@@ -66,7 +67,6 @@ router.get('/coins/:coinId/profile', async (req, res, next) => {
         }
       )
     ).data.data
-    console.log(';;;;;;;;;;;;;;;;;;;;;;;;;;', profileDataKey)
     res.status(200).send(profileDataKey)
   } catch (error) {
     next(error)

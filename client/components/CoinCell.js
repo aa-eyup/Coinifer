@@ -17,7 +17,9 @@ const CoinCell = props => {
             </div>
             <div className="media-content">
               <p className="title is-6">
-                <Link to={`/coins/${crypto.symbol}`}>{`${crypto.name}`}</Link>
+                <Link
+                  to={`/coins/${crypto.symbol}/profile`}
+                >{`${crypto.name}`}</Link>
               </p>
             </div>
           </div>

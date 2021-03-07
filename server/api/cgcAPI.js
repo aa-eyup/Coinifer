@@ -7,6 +7,8 @@ const CoinGeckoClient = new CoinGecko()
 const router = require('express').Router()
 module.exports = router
 
+// CGC ---------------------------------------------------------------------
+// top 100
 router.get('/coins', async (req, res, next) => {
   try {
     const data = (
@@ -20,6 +22,7 @@ router.get('/coins', async (req, res, next) => {
     next(error)
   }
 })
+// top 100 by page
 router.get('/coins/page/:pageNumber', async (req, res, next) => {
   try {
     const {pageNumber} = req.params
@@ -39,7 +42,7 @@ router.get('/coins/page/:pageNumber', async (req, res, next) => {
     next(error)
   }
 })
-
+// single
 router.get('/coins/:coinId', async (req, res, next) => {
   try {
     const {coinId} = req.params
