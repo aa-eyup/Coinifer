@@ -41,7 +41,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         <nav className="navbar" role="navigation" aria-label="main navigation">
           {/* The navbar will show these links before you log in */}
           <div className="navbar-brand">
-            <a className="navbar-item" href="/login">
+            <a className="navbar-item" href="/home">
               Coinifer
               {/* <img
                 src="https://bulma.io/images/bulma-logo.png"

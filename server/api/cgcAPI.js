@@ -46,7 +46,13 @@ router.get('/coins/:coinId', async (req, res, next) => {
     const data = (
       await axios.get(`https://api.coingecko.com/api/v3/coins/${coinId}`)
     ).data
-    res.status(200).send(data)
+    const filtered = {
+      cgScore: data.coingecko_score,
+      developerScore: data.developer_score,
+      communityScore: data.community_score,
+      liquidityScore: data.liquidity_score
+    }
+    res.status(200).send(filtered)
   } catch (error) {
     next(error)
   }

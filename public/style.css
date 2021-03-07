@@ -34,7 +34,10 @@ form div {
   width: 100%;
 }
 /* ------------------------------- GRID --------------------------------- */
-
+/* .media-content {
+  display: flex;
+  justify-content: center;
+} */
 #grid {
   display: flex;
   flex-wrap: wrap;

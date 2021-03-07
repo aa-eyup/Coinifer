@@ -9,12 +9,17 @@ const CoinCell = props => {
     <span id="coin-cell">
       <div className="card">
         <div className="card-content">
-          <div className="media-content">
-            <p className="title is-6">
-              <Link to={`/coins/${crypto.symbol}`}>
-                <div>{`${crypto.name}`}</div>
-              </Link>
-            </p>
+          <div className="media">
+            <div className="media-left">
+              <figure className="image is-24x24">
+                <img src={crypto.image.small} />
+              </figure>
+            </div>
+            <div className="media-content">
+              <p className="title is-6">
+                <Link to={`/coins/${crypto.symbol}`}>{`${crypto.name}`}</Link>
+              </p>
+            </div>
           </div>
           <div className="card-image">
             <figure className="is-4by3">

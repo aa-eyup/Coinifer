@@ -3,6 +3,7 @@
 const router = require('express').Router()
 module.exports = router
 const got = require('got')
+const axios = require('axios')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -16,19 +17,57 @@ router.get('/', async (req, res, next) => {
 router.get('/coins/:coinId', async (req, res, next) => {
   try {
     const {coinId} = req.params
-    const profileData = (
-      await got
-        .get(`https://data.messari.io/api/v2/assets/${coinId}/profile`)
-        .json()
+
+    // const profileDataKey = (
+    //   await axios.get(
+    //     `https://data.messari.io/api/v2/assets/${coinId}/profile`,
+    //     {
+    //       headers: {
+    //         'x-messari-api-key': `${process.env.MESSARI_API_KEY}`
+    //       }
+    //     }
+    //   )
+    // ).data
+
+    const assetMetricsKey = (
+      await axios.get(
+        `https://data.messari.io/api/v1/assets/${coinId}/metrics`,
+        {
+          headers: {
+            'x-messari-api-key': `${process.env.MESSARI_API_KEY}`
+          }
+        }
+      )
     ).data
-    // assetMetrics inclused .market_data
-    const assetMetrics = (
-      await got
-        .get(`https://data.messari.io/api/v1/assets/${coinId}/metrics`)
-        .json()
-    ).data
-    const data = {...profileData, ...assetMetrics}
-    res.status(200).send(data)
+    const data = {...assetMetricsKey.data}
+    const filtered = {
+      hashRate: data.mining_stats,
+      avgDifficulty: data.average_difficulty,
+      sharpeRatio: data.risk_metrics.sharpe_ratios,
+      lendRates: data.lend_rates,
+      onChainData: data.on_chain_data
+    }
+    res.status(200).send(filtered)
+  } catch (error) {
+    next(error)
+  }
+})
+router.get('/coins/:coinId/profile', async (req, res, next) => {
+  try {
+    const {coinId} = req.params
+
+    const profileDataKey = (
+      await axios.get(
+        `https://data.messari.io/api/v2/assets/${coinId}/profile`,
+        {
+          headers: {
+            'x-messari-api-key': `${process.env.MESSARI_API_KEY}`
+          }
+        }
+      )
+    ).data.data
+    console.log(';;;;;;;;;;;;;;;;;;;;;;;;;;', profileDataKey)
+    res.status(200).send(profileDataKey)
   } catch (error) {
     next(error)
   }
