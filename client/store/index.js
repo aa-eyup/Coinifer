@@ -4,10 +4,12 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import apiData from './apiDataStore'
+import spiderChartData from './spiderChartStore'
 
 const reducer = combineReducers({
   user,
-  apiData
+  apiData,
+  spiderChartData
 })
 
 const middleware = composeWithDevTools(

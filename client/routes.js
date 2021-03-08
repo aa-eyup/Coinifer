@@ -4,6 +4,7 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {me} from './store'
+
 import SingleCoin from './components/SingleCoin'
 import CoinGrid from './components/CoinGrid'
 
@@ -20,17 +21,17 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route
+          path="/coins/page/:pageNumber"
+          render={routProps => <CoinGrid {...routProps} />}
+        />
+        <Route path="/home" component={UserHome} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
             <Route
-              path="/coins/:coinId"
+              path="/coins/:coinId/profile"
               render={routProps => <SingleCoin {...routProps} />}
-            />
-            <Route
-              path="/coins"
-              render={routProps => <CoinGrid {...routProps} />}
             />
           </Switch>
         )}

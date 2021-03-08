@@ -1,4 +1,6 @@
 ---------------------------------- APIs  ------------------------------
+Top 7 Trending (for hom page?):
+CoinGecko GET /search/trending
 
 Top 100:
 coinpaper

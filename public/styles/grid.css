@@ -1,0 +1,22 @@
+.grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+@media (min-width: 769px) and (max-width: 1215px) {
+  .grid {
+    grid-template-columns: auto auto;
+  }
+}
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: auto;
+  }
+}
+.coin-cell {
+  padding: 15px;
+}
+.coin-cell:hover {
+  /* offset x, offset y, blur raduis, spread radius */
+  box-shadow: 0 0.5em 0.5em -0.4em rgb(36, 225, 96);
+  transform: translateY(-0.25em);
+}

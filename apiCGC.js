@@ -15,7 +15,7 @@ const getCategories = async () => {
   let categories = {}
   // CoinGecko => 6300 total coins
   const data = (await CoinGeckoClient.coins.list()).data
-  data.forEach((coinObj) => coinIdArr.push(coinObj.id))
+  data.forEach(coinObj => coinIdArr.push(coinObj.id))
   console.log(data.length)
   // nomics =>
   //
@@ -33,7 +33,7 @@ const dailyVolumeRatio = async (asset, ltr, str) => {
   const data = (
     await CoinGeckoClient.coins.fetchMarketChartRange(asset, {
       from,
-      to,
+      to
     })
   ).data
   let volumes = data.total_volumes
@@ -117,12 +117,12 @@ public_interest_score: 0.018,
 public_interest_stats: { alexa_rank: 226414, bing_matches: null },
 */
 
-const fetchCoin = async (asset) => {
+const fetchCoin = async asset => {
   const data = await CoinGeckoClient.coins.fetch(asset, {})
   console.log(' --------------- coins.fetch single coin -----------------')
   console.log(data)
 }
-fetchCoin('ravencoin')
+//fetchCoin('ravencoin')
 
 // ------------------------- Coins List --------------------------------------
 // throttle limit breached -> how to get thhis data all at once?
@@ -132,9 +132,9 @@ fetchCoin('ravencoin')
 // total supply vs. circulating supply
 // *** only top 50 by mkt cap
 const allCoins = async () => {
-  const data = (await CoinGeckoClient.coins.all()).data
+  const data = (await CoinGeckoClient.coins.all({per_page: 100})).data
   console.log(' ---------------- All Coins ----------------')
   console.log(data.length)
-  console.log(data.map((coinObj) => coinObj.id))
+  console.log(data.map(coinObj => coinObj.id))
 }
-//allCoins();
+allCoins()
