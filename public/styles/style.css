@@ -16,9 +16,6 @@ nav a {
   display: inline-block;
   margin: 1em;
 }
-.navbar-brand a {
-  color: rgb(36, 225, 96);
-}
 
 form div {
   margin: 1em;
@@ -49,6 +46,13 @@ form div {
   }
 }
 */
+/* Auth form ------------------------------------------------*/
+#auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* Bulma navbar ------------------------------------------------*/
 .center,
 .center-column,
