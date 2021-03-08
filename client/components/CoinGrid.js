@@ -5,30 +5,21 @@ import {fetchTopOneHundred} from '../store/apiDataStore'
 import CoinCell from './CoinCell'
 
 class CoinGrid extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-
   componentDidMount() {
     const {pageNumber} = this.props.match.params
-    console.log(
-      'grid component mounts ======================== page ',
-      pageNumber
-    )
-    this.props.fetchTopOneHundred(this.props.match.params.pageNumber)
+    this.props.fetchTopOneHundred(pageNumber)
   }
 
   render() {
     console.log('all', this.props.topOneHundred)
     return (
-      <div id="container">
-        <div id="grid">
+      <main id="container">
+        <div className="grid">
           {this.props.topOneHundred.map(crypto => (
             <CoinCell key={crypto.id} crypto={crypto} />
           ))}
         </div>
-      </div>
+      </main>
     )
   }
 }

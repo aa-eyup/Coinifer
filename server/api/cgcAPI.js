@@ -42,6 +42,18 @@ router.get('/coins/page/:pageNumber', async (req, res, next) => {
     next(error)
   }
 })
+// trending
+router.get('/trending', async (req, res, next) => {
+  try {
+    const data = (
+      await axios.get('https://api.coingecko.com/api/v3/search/trending')
+    ).data
+    const coins = data.coins.slice(0, 6).map(coin => coin.item)
+    res.status(200).send(coins)
+  } catch (error) {
+    next(error)
+  }
+})
 // single
 router.get('/coins/:coinId', async (req, res, next) => {
   try {

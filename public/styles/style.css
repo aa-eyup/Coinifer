@@ -1,0 +1,91 @@
+body {
+  font-family: sans-serif;
+  position: relative;
+  padding-bottom: 6rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+label {
+  display: block;
+}
+
+nav a {
+  display: inline-block;
+  margin: 1em;
+}
+.navbar-brand a {
+  color: rgb(36, 225, 96);
+}
+
+form div {
+  margin: 1em;
+  display: inline-block;
+}
+
+#main-footer p {
+  width: 100%;
+  text-align: center;
+  font-size: 0.8em;
+  color: rgb(36, 225, 96);
+  padding-top: 6px;
+  width: 100%;
+}
+/*
+.hero {
+  background: black url(.jpg) center / cover;
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    background: black url(jpg) center / cover;
+  }
+}
+@media (max-width: 768px) {
+  .hero {
+    background: black url(.jpg) center / cover;
+  }
+}
+*/
+/* Bulma navbar ------------------------------------------------*/
+.center,
+.center-column,
+.top,
+.right,
+.bottom,
+.left {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .center-column {
+  flex-direction: column;
+} */
+
+.top {
+  align-items: flex-start;
+}
+.right {
+  justify-content: flex-end;
+}
+.bottom {
+  align-items: flex-end;
+}
+.left {
+  justify-content: flex-start;
+}
+
+.single-spaced,
+.single-spaced * {
+  line-height: 1;
+}
+
+@media (max-width: 1024px) {
+  .desktop {
+    display: none;
+  }
+}

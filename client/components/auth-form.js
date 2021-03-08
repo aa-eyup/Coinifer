@@ -19,7 +19,7 @@ const AuthForm = props => {
           <p className="control has-icons-left">
             <input name="email" type="text" className="input is-success" />
             <span className="icon is-small is-left">
-              <i className="fas fa-envelop"></i>
+              <i className="fas fa-envelope"></i>
             </span>
           </p>
         </div>

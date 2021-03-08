@@ -21,14 +21,14 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route
+          path="/coins/page/:pageNumber"
+          render={routProps => <CoinGrid {...routProps} />}
+        />
+        <Route path="/home" component={UserHome} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
-            <Route
-              path="/coins/page/:pageNumber"
-              render={routProps => <CoinGrid {...routProps} />}
-            />
             <Route
               path="/coins/:coinId/profile"
               render={routProps => <SingleCoin {...routProps} />}

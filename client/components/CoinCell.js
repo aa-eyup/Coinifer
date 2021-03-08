@@ -6,13 +6,13 @@ const CoinCell = props => {
   const {crypto} = props
   console.log(crypto)
   return (
-    <span id="coin-cell">
+    <section className="coin-cell">
       <div className="card">
         <div className="card-content">
           <div className="media">
             <div className="media-left">
               <figure className="image is-24x24">
-                <img src={crypto.image.small} />
+                <img src={crypto.image ? crypto.image.small : crypto.thumb} />
               </figure>
             </div>
             <div className="media-content">
@@ -30,7 +30,7 @@ const CoinCell = props => {
           </div>
         </div>
       </div>
-    </span>
+    </section>
   )
 }
 export default CoinCell
