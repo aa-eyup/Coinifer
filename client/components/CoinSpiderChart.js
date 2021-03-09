@@ -115,7 +115,7 @@ class SpiderChart extends React.Component {
           />
         </div>
       ) : (
-        <div>asset not supported at this time</div>
+        <div>polar chart not supported at this time</div>
       )
     }
   }

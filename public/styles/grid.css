@@ -1,6 +1,7 @@
 .grid {
   display: grid;
   grid-template-columns: auto auto auto;
+  /* justify-items: center; */
 }
 @media (min-width: 769px) and (max-width: 1215px) {
   .grid {
@@ -13,7 +14,8 @@
   }
 }
 .coin-cell {
-  padding: 15px;
+  margin: 10px;
+  max-width: 400px;
 }
 .coin-cell:hover {
   /* offset x, offset y, blur raduis, spread radius */
