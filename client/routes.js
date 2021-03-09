@@ -25,7 +25,7 @@ class Routes extends Component {
           path="/coins/page/:pageNumber"
           render={routProps => <CoinGrid {...routProps} />}
         />
-        <Route path="/home" component={UserHome} />
+        <Route path="/trending" component={UserHome} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -36,7 +36,7 @@ class Routes extends Component {
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route component={UserHome} />
       </Switch>
     )
   }
