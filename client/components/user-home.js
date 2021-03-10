@@ -1,11 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import Trending from './Trending'
 
-const UserHome = () => {
-  return <Trending />
-}
+const UserHome = () => {}
 
 const mapState = state => {
   return {

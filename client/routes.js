@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
+import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 
 import SingleCoin from './components/SingleCoin'
 import CoinGrid from './components/CoinGrid'
+import Trending from './components/Trending'
 
 class Routes extends Component {
   componentDidMount() {
@@ -25,7 +26,10 @@ class Routes extends Component {
           path="/coins/page/:pageNumber"
           render={routProps => <CoinGrid {...routProps} />}
         />
-        <Route path="/trending" component={UserHome} />
+        <Route path="/trending" component={Trending} />
+        <Route path="/">
+          <Redirect to="/trending" />
+        </Route>
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -37,6 +41,7 @@ class Routes extends Component {
               path="/coins/:coinId/profile"
               render={routProps => <SingleCoin {...routProps} />}
             />
+            <Route path="/user/profile" component={UserHome} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
