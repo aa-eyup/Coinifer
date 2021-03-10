@@ -16,7 +16,9 @@ nav a {
   display: inline-block;
   margin: 1em;
 }
-
+.line-break {
+  margin: 2px;
+}
 form div {
   margin: 1em;
   display: inline-block;
