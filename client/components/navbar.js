@@ -23,13 +23,19 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               to="/trending"
               className="navbar-item center has-text-black desktop"
             >
-              <p>Trending Today</p>
+              <p>Trending</p>
             </Link>
             <Link
               to="/coins/page/1"
               className="navbar-item center has-text-black desktop"
             >
               <p>Top 100 Assets</p>
+            </Link>
+            <Link
+              to="/coins/filter"
+              className="navbar-item center has-text-black desktop"
+            >
+              <p>Filter by Metrics</p>
             </Link>
           </div>
           {isLoggedIn ? (
@@ -40,28 +46,40 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             ''
           )}
           <div className="column right">
-            <Link
-              to="/about"
-              className="navbar-item right has-text-black desktop"
-            >
-              <p>About Coinifer</p>
-            </Link>
             {isLoggedIn ? (
-              <a
-                className="navbar-item right has-text-black desktop"
-                href="#"
-                onClick={handleClick}
-              >
-                Logout
-              </a>
+              <div className="navbar-end">
+                <div className="navbar-item has-dropdown is-hoverable desktop">
+                  <a className="navbar-link">
+                    <i className="fas fa-user-circle fa-2x"></i>
+                  </a>
+
+                  <div className="navbar-dropdown is-right">
+                    <Link
+                      to="/user/profile"
+                      className="navbar-item has-text-black desktop"
+                    >
+                      My Profile
+                    </Link>
+                    <hr className="navbar-divider" />
+                    {/* <a className="navbar-item">Contact</a> */}
+                    <Link
+                      to="/about"
+                      className="navbar-item right has-text-black desktop"
+                    >
+                      <p>About Coinifer</p>
+                    </Link>
+                    <a
+                      className="navbar-item right has-text-black desktop"
+                      href="#"
+                      onClick={handleClick}
+                    >
+                      Logout
+                    </a>
+                  </div>
+                </div>
+              </div>
             ) : (
               <>
-                <Link
-                  to="/about"
-                  className="navbar-item has-text-black desktop"
-                >
-                  <p>About Coinifer</p>
-                </Link>
                 <Link
                   to="/login"
                   className="navbar-item has-text-black desktop"
@@ -76,6 +94,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
                 </Link>
               </>
             )}
+
             {/* <figure className="navbar-item image has-text-black center">
                 <i
                 className="fas fa-bars"

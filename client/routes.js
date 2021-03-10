@@ -29,6 +29,10 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
+            {/* <Route
+              path="/user/profile"
+              render={routProps => <UserProfile {...routProps} />}
+            /> */}
             <Route
               path="/coins/:coinId/profile"
               render={routProps => <SingleCoin {...routProps} />}
