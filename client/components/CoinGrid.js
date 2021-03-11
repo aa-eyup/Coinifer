@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {fetchTopOneHundred} from '../store/apiDataStore'
+import {fetchTopOneHundred, fetchMarketCapPage} from '../store/apiDataStore'
 import CoinCell from './CoinCell'
 import PaginationNavbar from './PaginationNavbar'
 import ReactLoading from 'react-loading'
@@ -9,12 +9,13 @@ import ReactLoading from 'react-loading'
 class CoinGrid extends React.Component {
   componentDidMount() {
     const {pageNumber} = this.props.match.params
-    this.props.fetchTopOneHundred(pageNumber)
+    //this.props.fetchTopOneHundred(pageNumber)
+    this.props.fetchMarketCapPage(pageNumber)
   }
 
   render() {
-    const {pageNumber} = this.props.match.params
-    const assets = this.props.topOneHundred[pageNumber]
+    const assets = this.props.marketCapPage
+    console.log('assets from Coingrid ----------------------', assets)
     if (assets) {
       return (
         <main id="container">
@@ -22,7 +23,7 @@ class CoinGrid extends React.Component {
             basepath="/coins/page"
             numberOfPages={10}
             currentPage={this.props.match.params.pageNumber}
-            fetchFunction={this.props.fetchTopOneHundred}
+            fetchFunction={this.props.fetchMarketCapPage}
           />
           <div className="grid">
             {assets.map(crypto => (
@@ -48,13 +49,15 @@ class CoinGrid extends React.Component {
 
 const mapState = state => {
   return {
+    marketCapPage: state.apiData.marketCapPage,
     topOneHundred: state.apiData.topOneHundred
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    fetchTopOneHundred: pageNumber => dispatch(fetchTopOneHundred(pageNumber))
+    fetchTopOneHundred: pageNumber => dispatch(fetchTopOneHundred(pageNumber)),
+    fetchMarketCapPage: pageNumber => dispatch(fetchMarketCapPage(pageNumber))
   }
 }
 

@@ -16,7 +16,7 @@
 .coin-cell {
   margin: 10px;
   width: 90%;
-  max-width: 400px;
+  max-width: 425px;
 }
 .coin-cell:hover {
   /* offset x, offset y, blur raduis, spread radius */

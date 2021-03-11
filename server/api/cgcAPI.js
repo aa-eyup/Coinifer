@@ -34,7 +34,13 @@ router.get('/coins/page/:pageNumber', async (req, res, next) => {
           localization: false
         })
       ).data
-      res.status(200).send(data)
+      const filtered = data.map(asset => ({
+        id: asset.id,
+        symbol: asset.symbol,
+        name: asset.name,
+        image: asset.image
+      }))
+      res.status(200).send(filtered)
     } else {
       res.sendStatus(204)
     }

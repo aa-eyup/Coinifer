@@ -16,7 +16,6 @@ const getMessariData = data => {
   }
 }
 const getTopOneHundred = (pageNumber, data) => {
-  console.log(pageNumber, data)
   return {
     type: GET_TOP100_DATA,
     pageNumber,
@@ -41,7 +40,12 @@ const getTrending = data => {
     data
   }
 }
-
+const getMarketCapPage = pageNumber => {
+  return {
+    type: GET_MARKETCAP_PAGE,
+    pageNumber
+  }
+}
 // thunk
 export const fetchTopOneHundred = pageNumber => {
   return async dispatch => {
@@ -49,9 +53,20 @@ export const fetchTopOneHundred = pageNumber => {
       // CoinGecko
       const data = (await axios.get(`/api/cgcAPI/coins/page/${pageNumber}`))
         .data
-      dispatch(getTopOneHundred(pageNumber, data))
+      await dispatch(getTopOneHundred(pageNumber, data))
+      dispatch(getMarketCapPage(pageNumber))
     } catch (error) {
       console.log(error)
+    }
+  }
+}
+export const fetchMarketCapPage = pageNumber => {
+  return async (dispatch, getState) => {
+    const {topOneHundred} = getState().apiData
+    if (topOneHundred[pageNumber]) {
+      dispatch(getMarketCapPage(pageNumber))
+    } else {
+      await dispatch(fetchTopOneHundred(pageNumber))
     }
   }
 }

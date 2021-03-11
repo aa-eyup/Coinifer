@@ -113,5 +113,18 @@ form div {
   width: 100%;
 }
 .container {
-  width: 75%;
+  display: flex;
+  justify-content: center;
+}
+.container div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+/* impacts size of polar radius */
+.container div {
+  width: 85%;
+}
+.highcharts-container {
+  overflow: auto !important;
 }

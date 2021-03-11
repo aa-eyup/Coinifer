@@ -6,7 +6,7 @@ import {fetchSpiderChartData} from '../store/spiderChartStore'
 import Highcharts from 'highcharts'
 import HighchartsMore from 'highcharts/highcharts-more'
 import HighchartsReact from 'highcharts-react-official'
-import Exporting from 'highcharts/modules/exporting'
+//import Exporting from 'highcharts/modules/exporting'
 //Exporting(Highcharts)
 HighchartsMore(Highcharts)
 
@@ -45,12 +45,14 @@ class SpiderChart extends React.Component {
               options={{
                 chart: {
                   polar: true
+                  // spaceLeft: 100,
+                  // spaceRight: 100
                 },
                 title: {
                   text: `${this.props.symbol}`
                 },
                 pane: {
-                  size: '80%'
+                  size: '70%'
                 },
                 xAxis: {
                   categories: [
@@ -60,6 +62,14 @@ class SpiderChart extends React.Component {
                     'Community',
                     'Development'
                   ],
+                  // labels: {
+                  //   staggerLines: 4,
+                  //   style: {
+                  //     width: 10
+                  //   },
+                  //   rotation: 0,
+                  //   enabled: true
+                  // },
                   tickmarkPlacement: 'on',
                   lineWidth: 0
                 },
