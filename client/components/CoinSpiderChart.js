@@ -36,7 +36,6 @@ class SpiderChart extends React.Component {
 
   render() {
     const data = this.props.spiderChartData[this.props.symbol]
-    console.log(data)
     if (data) {
       return (
         <figure className="highcharts-figure">

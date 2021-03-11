@@ -12,8 +12,14 @@ The volume turnover is a measure of market transaction volume of an asset. It is
 
 Notes about Data -------------------------------------------------------------
 - # of addresses: not a represntative metric due to centralized brokers (coinbase)
+
 - is the data representing on-chain data only (is side--chain data excluded)
--
+
+- how to limit number of API calls to fetch top 100 assets by market cap
+ => store top ten as one piece of state (to change based on page selected by user)
+    component invokes this thunk which checks if data is already in state
+    if not => invokes thunk to fetch ten from API given page number
+ => store all one hundred in an obj where key = pageNumber and value is array of 10 assets' objects
 ---------------------------------- APIs  ------------------------------
 Top 7 Trending (for hom page?):
 CoinGecko GET /search/trending

@@ -17,9 +17,9 @@ export const fetchSpiderChartData = (symbol, id) => {
     try {
       const messariData = (await axios.get(`/api/messariAPI/coins/${symbol}`))
         .data
-
       let name = id ? id : messariData.slug
       const cgcData = (await axios.get(`/api/cgcAPI/coins/${name}`)).data
+
       const data = {messariData, cgcData}
       dispatch(getSpiderChartData({symbol, data}))
     } catch (error) {

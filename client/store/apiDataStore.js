@@ -3,6 +3,7 @@ import axios from 'axios'
 // action type
 const GET_MESSARI_DATA = 'GET_MESSARI_DATA'
 const GET_TOP100_DATA = 'GET_TOP100_COINPAPER'
+const GET_MARKETCAP_PAGE = 'GET_MARKETCAP_PAGE'
 const GET_SINGLE_COIN = 'GET_SINGLE_COIN'
 const GET_MESSARI_PROFILE = 'GET_MESSARI_PROFILE'
 const GET_TRENDING = 'GET_TRENDING'
@@ -14,9 +15,11 @@ const getMessariData = data => {
     data
   }
 }
-const getTopOneHundred = data => {
+const getTopOneHundred = (pageNumber, data) => {
+  console.log(pageNumber, data)
   return {
     type: GET_TOP100_DATA,
+    pageNumber,
     data
   }
 }
@@ -40,30 +43,23 @@ const getTrending = data => {
 }
 
 // thunk
-export const fetchMessariData = () => {
-  return async dispatch => {
-    try {
-      const data = (await axios.get('/api/messariAPI')).data
-      dispatch(getMessariData(data))
-    } catch (error) {
-      console.log(error)
-    }
-  }
-}
 export const fetchTopOneHundred = pageNumber => {
   return async dispatch => {
     try {
       // CoinGecko
       const data = (await axios.get(`/api/cgcAPI/coins/page/${pageNumber}`))
         .data
-      /*
-      // all 6k+ coins from CGC
-          const data = await axios.get(
-        'https://api.coingecko.com/api/v3/simple/price'
-      )
-      */
-      // coinpaper api send lighter load
-      dispatch(getTopOneHundred(data))
+      dispatch(getTopOneHundred(pageNumber, data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+export const fetchMessariData = () => {
+  return async dispatch => {
+    try {
+      const data = (await axios.get('/api/messariAPI')).data
+      dispatch(getMessariData(data))
     } catch (error) {
       console.log(error)
     }
@@ -93,7 +89,6 @@ export const fetchTrending = () => {
   return async dispatch => {
     try {
       const data = (await axios.get('/api/cgcAPI/trending')).data
-      console.log('trending data ========================', data)
       dispatch(getTrending(data))
     } catch (error) {
       console.log(error)
@@ -106,7 +101,8 @@ const initialState = {
   messariAllCoinsData: [],
   messariProfile: {},
   singleCoin: {},
-  topOneHundred: [],
+  topOneHundred: {},
+  marketCapPage: [],
   trending: []
 }
 
@@ -115,7 +111,15 @@ export default function(state = initialState, action) {
     case GET_MESSARI_DATA:
       return {...state, messariAllCoinsData: action.data}
     case GET_TOP100_DATA:
-      return {...state, topOneHundred: action.data}
+      return {
+        ...state,
+        topOneHundred: {
+          ...state.topOneHundred,
+          [action.pageNumber]: action.data
+        }
+      }
+    case GET_MARKETCAP_PAGE:
+      return {...state, marketCapPage: state.topOneHundred[action.pageNumber]}
     case GET_SINGLE_COIN:
       return {...state, singleCoin: action.data}
     case GET_MESSARI_PROFILE:

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {fetchTopOneHundred} from '../store/apiDataStore'
 import CoinCell from './CoinCell'
+import PaginationNavbar from './PaginationNavbar'
+import ReactLoading from 'react-loading'
 
 class CoinGrid extends React.Component {
   componentDidMount() {
@@ -11,16 +13,36 @@ class CoinGrid extends React.Component {
   }
 
   render() {
-    console.log('all', this.props.topOneHundred)
-    return (
-      <main id="container">
-        <div className="grid">
-          {this.props.topOneHundred.map(crypto => (
-            <CoinCell key={crypto.id} crypto={crypto} />
-          ))}
+    const {pageNumber} = this.props.match.params
+    const assets = this.props.topOneHundred[pageNumber]
+    if (assets) {
+      return (
+        <main id="container">
+          <PaginationNavbar
+            basepath="/coins/page"
+            numberOfPages={10}
+            currentPage={this.props.match.params.pageNumber}
+            fetchFunction={this.props.fetchTopOneHundred}
+          />
+          <div className="grid">
+            {assets.map(crypto => (
+              <CoinCell key={crypto.id} crypto={crypto} />
+            ))}
+          </div>
+        </main>
+      )
+    } else {
+      return (
+        <div className="center">
+          <ReactLoading
+            type="cubes"
+            color="rgb(36, 225, 96)"
+            height={25}
+            width={50}
+          />
         </div>
-      </main>
-    )
+      )
+    }
   }
 }
 

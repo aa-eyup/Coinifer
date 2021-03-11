@@ -29,13 +29,13 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               to="/coins/page/1"
               className="navbar-item center has-text-black desktop"
             >
-              <p>Top 100 Assets</p>
+              <p>Top 100 by Market Cap</p>
             </Link>
             <Link
               to="/coins/filter"
               className="navbar-item center has-text-black desktop"
             >
-              <p>Filter by Metrics</p>
+              <p>Search by...</p>
             </Link>
           </div>
           {isLoggedIn ? (
