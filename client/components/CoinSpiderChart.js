@@ -18,6 +18,7 @@ class SpiderChart extends React.Component {
     }
   }
   componentDidMount() {
+    // do not send API request if already in state
     if (!this.props.spiderChartData[this.props.symbol]) {
       this.props.fetchSpiderChartData(this.props.symbol, this.props.id)
     }
@@ -37,7 +38,6 @@ class SpiderChart extends React.Component {
     const data = this.props.spiderChartData[this.props.symbol]
     console.log(data)
     if (data) {
-      //console.log('spiderchart state', this.props.spiderChartData)
       return (
         <figure className="highcharts-figure">
           <div className="container">
@@ -47,56 +47,50 @@ class SpiderChart extends React.Component {
                 chart: {
                   polar: true
                 },
-
                 title: {
                   text: `${this.props.symbol}`
                 },
-
                 pane: {
-                  startAngle: 0,
-                  endAngle: 360
+                  size: '80%'
                 },
-
                 xAxis: {
-                  tickInterval: 45,
-                  min: 0,
-                  max: 360,
-                  labels: {
-                    format: '{value}°'
-                  }
+                  categories: [
+                    'Valuation',
+                    'Volume Retention',
+                    'Liquidity',
+                    'Community',
+                    'Development'
+                  ],
+                  tickmarkPlacement: 'on',
+                  lineWidth: 0
                 },
-
                 yAxis: {
-                  min: 0
+                  min: 0,
+                  max: 100
                 },
-
+                tooltip: {
+                  shared: true,
+                  pointFormat:
+                    '<span style="color:{series.color}"><b>{point.y:,.0f}</b><br/>'
+                },
                 plotOptions: {
-                  series: {
-                    pointStart: 0,
-                    pointInterval: 45
-                  },
                   column: {
                     pointPadding: 0,
                     groupPadding: 0
                   }
                 },
-
+                //
                 series: [
                   {
-                    type: 'column',
-                    name: 'Column',
-                    data: [8, 7, 6, 5, 4, 3, 2, 1],
-                    pointPlacement: 'between'
-                  },
-                  {
-                    type: 'line',
-                    name: 'Line',
-                    data: [1, 2, 3, 4, 5, 6, 7, 8]
-                  },
-                  {
                     type: 'area',
-                    name: 'Area',
-                    data: [1, 8, 2, 7, 3, 6, 4, 5]
+                    showInLegend: false,
+                    data: [
+                      Math.max(0, 1 - data.nvt / 150) * 100,
+                      data.turnover ? 100 - data.turnover : 0,
+                      data.liquidity,
+                      data.community,
+                      data.development
+                    ]
                   }
                 ]
               }}

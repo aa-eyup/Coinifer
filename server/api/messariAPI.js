@@ -42,6 +42,8 @@ router.get('/coins/:coinId', async (req, res, next) => {
     const data = {...assetMetricsKey.data}
     const filtered = {
       slug: data.slug,
+      marketData: data.market_data,
+      marketCap: data.marketcap,
       hashRate: data.mining_stats,
       avgDifficulty: data.average_difficulty,
       sharpeRatio: data.risk_metrics.sharpe_ratios,

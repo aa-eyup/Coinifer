@@ -103,11 +103,15 @@ form div {
 
 /* Highcharts figure ------------------------------------------------*/
 
-.highcharts-figure {
+/* .highcharts-figure {
   height: 80%;
   width: 80%;
-}
+} */
 .card-image figure {
   display: flex;
   justify-content: center;
+  width: 100%;
+}
+.container {
+  width: 75%;
 }

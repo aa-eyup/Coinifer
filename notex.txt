@@ -1,3 +1,19 @@
+---------------------------------- Spider Chart Explained  ------------------------------
+
+-Mining:
+-Risk:
+- NVT (network value to txns ratio): network value (mkt cap) / daily txn value
+Math.max(0, 1 - nvt / 150) * 100
+-Volume Turnover:
+The volume turnover is a measure of market transaction volume of an asset. It is calculated by dividing the Real 10 Volume of a cryptoasset by the Liquid Market Capitalization. A high daily volume and low liquid market cap will result in a relatively high turnover ratio, whereas a low daily volume and high liquid market cap will produce a relatively low turnover ratio. This ratio can be used to understand price momentum.
+-CoinGecko Liquidity Score:
+-CoinGecko Community Score:
+-CoinGecko Developer Score:
+
+Notes about Data -------------------------------------------------------------
+- # of addresses: not a represntative metric due to centralized brokers (coinbase)
+- is the data representing on-chain data only (is side--chain data excluded)
+-
 ---------------------------------- APIs  ------------------------------
 Top 7 Trending (for hom page?):
 CoinGecko GET /search/trending
