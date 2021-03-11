@@ -85,11 +85,11 @@ class SpiderChart extends React.Component {
                     type: 'area',
                     showInLegend: false,
                     data: [
-                      Math.max(0, 1 - data.nvt / 150) * 100,
-                      data.turnover ? 100 - data.turnover : 0,
-                      data.liquidity,
-                      data.community,
-                      data.development
+                      data.nvtScore,
+                      data.retentionScore,
+                      data.liquidityScore,
+                      data.communityScore,
+                      data.developmentScore
                     ]
                   }
                 ]

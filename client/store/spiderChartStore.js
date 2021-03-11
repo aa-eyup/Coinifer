@@ -39,17 +39,13 @@ export default function(state = initialState, action) {
         return {
           ...state,
           [action.data.symbol]: {
-            data: data,
-            nvt:
-              data.messariData.marketCap.current_marketcap_usd /
-              data.messariData.marketData.real_volume_last_24_hours,
-            hashRate: data.messariData.onChainData.hash_rate,
+            slug: data.messariData.slug,
+            nvtScore: data.messariData.nvtScore,
             sharpeRatioObj: data.messariData.sharpeRatio,
-            turnover:
-              data.messariData.marketCap.volume_turnover_last_24_hours_percent,
-            liquidity: data.cgcData.liquidityScore,
-            community: data.cgcData.communityScore,
-            development: data.cgcData.developerScore
+            retentionScore: data.messariData.retentionScore,
+            liquidityScore: data.cgcData.liquidityScore,
+            communityScore: data.cgcData.communityScore,
+            developmentScore: data.cgcData.developerScore
           }
         }
       } else {
