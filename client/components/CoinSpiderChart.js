@@ -6,7 +6,7 @@ import {fetchSpiderChartData} from '../store/spiderChartStore'
 import Highcharts from 'highcharts'
 import HighchartsMore from 'highcharts/highcharts-more'
 import HighchartsReact from 'highcharts-react-official'
-import Exporting from 'highcharts/modules/exporting'
+//import Exporting from 'highcharts/modules/exporting'
 //Exporting(Highcharts)
 HighchartsMore(Highcharts)
 
@@ -18,6 +18,7 @@ class SpiderChart extends React.Component {
     }
   }
   componentDidMount() {
+    // do not send API request if already in state
     if (!this.props.spiderChartData[this.props.symbol]) {
       this.props.fetchSpiderChartData(this.props.symbol, this.props.id)
     }
@@ -35,9 +36,7 @@ class SpiderChart extends React.Component {
 
   render() {
     const data = this.props.spiderChartData[this.props.symbol]
-    console.log(data)
     if (data) {
-      //console.log('spiderchart state', this.props.spiderChartData)
       return (
         <figure className="highcharts-figure">
           <div className="container">
@@ -46,57 +45,63 @@ class SpiderChart extends React.Component {
               options={{
                 chart: {
                   polar: true
+                  // spaceLeft: 100,
+                  // spaceRight: 100
                 },
-
                 title: {
                   text: `${this.props.symbol}`
                 },
-
                 pane: {
-                  startAngle: 0,
-                  endAngle: 360
+                  size: '70%'
                 },
-
                 xAxis: {
-                  tickInterval: 45,
-                  min: 0,
-                  max: 360,
-                  labels: {
-                    format: '{value}°'
-                  }
+                  categories: [
+                    'Valuation (NVT)',
+                    'Current Price vs. VWAP',
+                    'Volume Retention',
+                    'Liquidity Score',
+                    'Social Score',
+                    'Developer Community'
+                  ],
+                  // labels: {
+                  //   staggerLines: 4,
+                  //   style: {
+                  //     width: 10
+                  //   },
+                  //   rotation: 0,
+                  //   enabled: true
+                  // },
+                  tickmarkPlacement: 'on',
+                  lineWidth: 0
                 },
-
                 yAxis: {
-                  min: 0
+                  min: 0,
+                  max: 100
                 },
-
+                tooltip: {
+                  shared: true,
+                  pointFormat:
+                    '<span style="color:{series.color}"><b>{point.y:,.0f}</b><br/>'
+                },
                 plotOptions: {
-                  series: {
-                    pointStart: 0,
-                    pointInterval: 45
-                  },
                   column: {
                     pointPadding: 0,
                     groupPadding: 0
                   }
                 },
-
+                //
                 series: [
                   {
-                    type: 'column',
-                    name: 'Column',
-                    data: [8, 7, 6, 5, 4, 3, 2, 1],
-                    pointPlacement: 'between'
-                  },
-                  {
-                    type: 'line',
-                    name: 'Line',
-                    data: [1, 2, 3, 4, 5, 6, 7, 8]
-                  },
-                  {
                     type: 'area',
-                    name: 'Area',
-                    data: [1, 8, 2, 7, 3, 6, 4, 5]
+                    showInLegend: false,
+                    data: [
+                      data.nvtScore,
+                      data.vwap,
+                      data.retentionScore,
+                      data.liquidityScore,
+                      data.communityScore,
+                      data.developmentScore
+                    ]
                   }
                 ]
               }}

@@ -29,23 +29,23 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               to="/coins/page/1"
               className="navbar-item center has-text-black desktop"
             >
-              <p>Top 100 Assets</p>
+              <p>Top 100 by Market Cap</p>
             </Link>
             <Link
-              to="/coins/filter"
+              to="/exchainge-analysis"
               className="navbar-item center has-text-black desktop"
             >
-              <p>Filter by Metrics</p>
+              <p>Exchainge Analysis</p>
             </Link>
           </div>
-          {isLoggedIn ? (
-            <div className="column center">
-              <p>search bar goes here</p>
-            </div>
-          ) : (
-            ''
-          )}
           <div className="column right">
+            {/* {isLoggedIn ? (
+              <div className="column center">
+                <p>search bar goes here</p>
+              </div>
+            ) : (
+              ''
+            )} */}
             {isLoggedIn ? (
               <div className="navbar-end">
                 <div className="navbar-item has-dropdown is-hoverable desktop">

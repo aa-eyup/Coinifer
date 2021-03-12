@@ -1,3 +1,51 @@
+---------------------------------- Spider Chart Explained  ------------------------------
+volume data from crypto compare:
+total_volume_quote and _base are the sum of all trades across all markets where the asset/coin was either the fsym/base or the tsym/quote/counter
+
+
+-Mining:
+
+-Risk:
+
+- NVT (network value to txns ratio): network value (mkt cap) / daily txn value
+similar to Price/Sales of a payment processing company
+nvt = mkt cap / on-chain txn value
+transformation = Math.max(0, 1 - nvt / 150) * 100
+
+
+-Volume Turnover (retention = 100 - turnover rate):
+=
+The volume turnover is a measure of market transaction volume of an asset. It is calculated by dividing the Real 10 Volume of a cryptoasset by the Liquid Market Capitalization. A high daily volume and low liquid market cap will result in a relatively high turnover ratio, whereas a low daily volume and high liquid market cap will produce a relatively low turnover ratio. This ratio can be used to understand price momentum.
+
+-(M)VWAP
+current price - vwap / current price = % of current price delta from vwap
+(+) indicates upside to reach vwap
+(-) indicated downside to reach vwap
+=> COINIFER CALC: over 50 indicates upside potential, under 50 indicates downside potential
+ 1. select tick (hourly for x days OR daily for x days)
+ 2. calc price per tick (H + L + C) / 3
+ 3. calc volume per tick
+ 4. product sum price/tick & vol/tick
+ 5. divide by cumulative volume
+
+-CoinGecko Liquidity Score:
+
+-CoinGecko Community Score:
+
+-CoinGecko Developer Score:
+
+Notes about Data -------------------------------------------------------------
+- # of addresses: not a represntative metric due to centralized brokers (coinbase)
+
+- is the data representing on-chain data only (is side--chain data excluded)
+
+- how to limit number of API calls to fetch top 100 assets by market cap
+ => store top ten as one piece of state (to change based on page selected by user)
+    component invokes this thunk which checks if data is already in state (by passing getState into thunk)
+    if not => invokes another thunk to fetch ten from API given page number
+ => store all one hundred in an obj where key = pageNumber and value is array of 10 assets' objects
+
+
 ---------------------------------- APIs  ------------------------------
 Top 7 Trending (for hom page?):
 CoinGecko GET /search/trending

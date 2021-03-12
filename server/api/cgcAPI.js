@@ -34,7 +34,13 @@ router.get('/coins/page/:pageNumber', async (req, res, next) => {
           localization: false
         })
       ).data
-      res.status(200).send(data)
+      const filtered = data.map(asset => ({
+        id: asset.id,
+        symbol: asset.symbol,
+        name: asset.name,
+        image: asset.image
+      }))
+      res.status(200).send(filtered)
     } else {
       res.sendStatus(204)
     }
@@ -62,6 +68,7 @@ router.get('/coins/:coinId', async (req, res, next) => {
       await axios.get(`https://api.coingecko.com/api/v3/coins/${coinId}`)
     ).data
     const filtered = {
+      currentPrice: data.market_data.current_price.usd,
       cgScore: data.coingecko_score,
       developerScore: data.developer_score,
       communityScore: data.community_score,

@@ -103,11 +103,28 @@ form div {
 
 /* Highcharts figure ------------------------------------------------*/
 
-.highcharts-figure {
+/* .highcharts-figure {
   height: 80%;
   width: 80%;
-}
+} */
 .card-image figure {
   display: flex;
   justify-content: center;
+  width: 100%;
+}
+.container {
+  display: flex;
+  justify-content: center;
+}
+.container div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+/* impacts size of polar radius */
+.container div {
+  width: 85%;
+}
+.highcharts-container {
+  overflow: auto !important;
 }
