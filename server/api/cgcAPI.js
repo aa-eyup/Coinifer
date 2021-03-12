@@ -68,6 +68,7 @@ router.get('/coins/:coinId', async (req, res, next) => {
       await axios.get(`https://api.coingecko.com/api/v3/coins/${coinId}`)
     ).data
     const filtered = {
+      currentPrice: data.market_data.current_price.usd,
       cgScore: data.coingecko_score,
       developerScore: data.developer_score,
       communityScore: data.community_score,

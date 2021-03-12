@@ -1,13 +1,34 @@
 ---------------------------------- Spider Chart Explained  ------------------------------
+volume data from crypto compare:
+total_volume_quote and _base are the sum of all trades across all markets where the asset/coin was either the fsym/base or the tsym/quote/counter
+
 
 -Mining:
+
 -Risk:
+
 - NVT (network value to txns ratio): network value (mkt cap) / daily txn value
 Math.max(0, 1 - nvt / 150) * 100
--Volume Turnover:
+
+-Volume Turnover (retention = 100 - turnover rate):
+=
 The volume turnover is a measure of market transaction volume of an asset. It is calculated by dividing the Real 10 Volume of a cryptoasset by the Liquid Market Capitalization. A high daily volume and low liquid market cap will result in a relatively high turnover ratio, whereas a low daily volume and high liquid market cap will produce a relatively low turnover ratio. This ratio can be used to understand price momentum.
+-(M)VWAP
+current price - vwap / current price = % of current price delta from vwap
+(+) indicates upside to reach vwap
+(-) indicated downside to reach vwap
+=> COINIFER CALC: over 50 indicates upside potential, under 50 indicates downside potential
+
+ 1. select tick (hourly for x days OR daily for x days)
+ 2. calc price per tick (H + L + C) / 3
+ 3. calc volume per tick
+ 4. product sum price/tick & vol/tick
+ 5. divide by cumulative volume
+
 -CoinGecko Liquidity Score:
+
 -CoinGecko Community Score:
+
 -CoinGecko Developer Score:
 
 Notes about Data -------------------------------------------------------------

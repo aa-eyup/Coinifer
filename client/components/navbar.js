@@ -35,17 +35,17 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               to="/coins/filter"
               className="navbar-item center has-text-black desktop"
             >
-              <p>Search by...</p>
+              <p>Exchainge Analysis</p>
             </Link>
           </div>
-          {isLoggedIn ? (
-            <div className="column center">
-              <p>search bar goes here</p>
-            </div>
-          ) : (
-            ''
-          )}
           <div className="column right">
+            {/* {isLoggedIn ? (
+              <div className="column center">
+                <p>search bar goes here</p>
+              </div>
+            ) : (
+              ''
+            )} */}
             {isLoggedIn ? (
               <div className="navbar-end">
                 <div className="navbar-item has-dropdown is-hoverable desktop">

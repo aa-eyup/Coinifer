@@ -57,10 +57,11 @@ class SpiderChart extends React.Component {
                 xAxis: {
                   categories: [
                     'Valuation',
+                    'Current Price vs. VWAP',
                     'Volume Retention',
-                    'Liquidity',
-                    'Community',
-                    'Development'
+                    'Liquidity Score',
+                    'Social Score',
+                    'Developer Community'
                   ],
                   // labels: {
                   //   staggerLines: 4,
@@ -95,6 +96,7 @@ class SpiderChart extends React.Component {
                     showInLegend: false,
                     data: [
                       data.nvtScore,
+                      data.vwap,
                       data.retentionScore,
                       data.liquidityScore,
                       data.communityScore,
