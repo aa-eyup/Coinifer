@@ -56,7 +56,7 @@ class SpiderChart extends React.Component {
                 },
                 xAxis: {
                   categories: [
-                    'Valuation',
+                    'Valuation (NVT)',
                     'Current Price vs. VWAP',
                     'Volume Retention',
                     'Liquidity Score',
