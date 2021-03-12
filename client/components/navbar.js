@@ -32,7 +32,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               <p>Top 100 by Market Cap</p>
             </Link>
             <Link
-              to="/coins/filter"
+              to="/exchainge-analysis"
               className="navbar-item center has-text-black desktop"
             >
               <p>Exchainge Analysis</p>
