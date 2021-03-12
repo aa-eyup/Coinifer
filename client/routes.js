@@ -27,7 +27,7 @@ class Routes extends Component {
           render={routProps => <CoinGrid {...routProps} />}
         />
         <Route path="/trending" component={Trending} />
-        <Route path="/exchainge-analysis" component={Trending} />
+        <Route path="/graph" component={Trending} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

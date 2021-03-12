@@ -17,7 +17,7 @@ class Trending extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <section className="hero is-success">
+        <section className="hero is-success box">
           <div className="hero-body">
             <p className="title">Trending on CoinGecko today!</p>
             <p className="subtitle">

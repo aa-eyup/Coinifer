@@ -6,7 +6,7 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <nav>
-    <section className="is-light hero">
+    <section className="hero">
       <div className="hero-head">
         <div className="columns is-marginless heading has-text-weight-bold">
           <div className="column left">
@@ -32,10 +32,10 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               <p>Top 100 by Market Cap</p>
             </Link>
             <Link
-              to="/exchainge-analysis"
+              to="/graph"
               className="navbar-item center has-text-black desktop"
             >
-              <p>Exchainge Analysis</p>
+              <p>Crypto Market Visualizer</p>
             </Link>
           </div>
           <div className="column right">
@@ -66,7 +66,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
                       to="/about"
                       className="navbar-item right has-text-black desktop"
                     >
-                      <p>About Coinifer</p>
+                      <p>Coinifer Methodology</p>
                     </Link>
                     <a
                       className="navbar-item right has-text-black desktop"

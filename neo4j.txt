@@ -1,2 +1,0 @@
-ACID (atomicity, consistency, isolation, durability) Compliant
-

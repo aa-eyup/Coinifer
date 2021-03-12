@@ -4,7 +4,6 @@ import CoinSpiderChart from './CoinSpiderChart'
 
 const CoinCell = props => {
   const {crypto} = props
-  console.log(crypto)
   return (
     <section className="coin-cell">
       <div className="card">
