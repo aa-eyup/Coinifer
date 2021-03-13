@@ -6,3 +6,6 @@ secrets.js
 npm-debug.log
 yarn-error.log
 notes.txt
+crypto-market-visualizer.json
+cmv-with-orgs.json
+seedNeo4j.txt

@@ -58,7 +58,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
                       to="/user/profile"
                       className="navbar-item has-text-black desktop"
                     >
-                      My Profile
+                      My Watchlist
                     </Link>
                     <hr className="navbar-divider" />
                     {/* <a className="navbar-item">Contact</a> */}
