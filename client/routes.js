@@ -10,8 +10,8 @@ import CoinGrid from './components/CoinGrid'
 import Trending from './components/Trending'
 
 class Routes extends Component {
-  componentDidMount() {
-    this.props.loadInitialData()
+  async componentDidMount() {
+    await this.props.loadInitialData()
   }
 
   render() {
@@ -27,7 +27,7 @@ class Routes extends Component {
           render={routProps => <CoinGrid {...routProps} />}
         />
         <Route path="/trending" component={Trending} />
-        <Route path="/exchainge-analysis" component={Trending} />
+        {/* <Route path="/graph" component={} /> */}
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -39,12 +39,12 @@ class Routes extends Component {
               path="/coins/:coinId/profile"
               render={routProps => <SingleCoin {...routProps} />}
             />
-            <Route path="/user/profile" component={UserHome} />
+            <Route path="/user/watchlist" component={UserHome} />
+            <Route path="/">
+              <Redirect to="/user/watchlist" />
+            </Route>
           </Switch>
         )}
-        <Route path="/">
-          <Redirect to="/trending" />
-        </Route>
         {/* Displays our Login component as a fallback */}
         <Route component={UserHome} />
       </Switch>

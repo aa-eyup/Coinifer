@@ -1,6 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 import CoinSpiderChart from './CoinSpiderChart'
+import {addToWatchlist, removeFromWatchlist} from '../store/watchlist'
 
 const CoinCell = props => {
   const {crypto} = props
@@ -22,6 +24,54 @@ const CoinCell = props => {
                 >{`${crypto.name}`}</Link>
               </p>
             </div>
+            {props.user.id ? (
+              props.watchlist.filter(
+                asset =>
+                  asset.assetSymbol === crypto.symbol &&
+                  asset.assetName === crypto.name
+              ).length > 0 ? (
+                <div
+                  className="watchlist-button media-right"
+                  onClick={() =>
+                    props.removeFromWatchlist({
+                      userId: props.user.id,
+                      assetName: crypto.name,
+                      assetSymbol: crypto.symbol
+                    })
+                  }
+                >
+                  <figure className="button is-24x24 is-danger">
+                    {/* <i className="far fa-minus-square fa-lg"></i> */}
+                    <p className="watchlist-icon">
+                      <strong>-</strong>
+                    </p>
+                    <p className="watchlist-msg">Remove from watchlist</p>
+                  </figure>
+                </div>
+              ) : (
+                <div
+                  className="watchlist-button media-right"
+                  onClick={() =>
+                    props.addToWatchlist({
+                      userId: props.user.id,
+                      assetName: crypto.name,
+                      assetSymbol: crypto.symbol,
+                      imageUrl: crypto.image ? crypto.image.small : crypto.thumb
+                    })
+                  }
+                >
+                  <figure className="button is-24x24 is-success">
+                    {/* <i className="far fa-plus-square fa-lg"></i> */}
+                    <p className="watchlist-icon">
+                      <strong>+</strong>
+                    </p>
+                    <p className="watchlist-msg">Add to watchlist</p>
+                  </figure>
+                </div>
+              )
+            ) : (
+              ''
+            )}
           </div>
           <div className="card-image">
             <figure className="is-4by3">
@@ -33,4 +83,18 @@ const CoinCell = props => {
     </section>
   )
 }
-export default CoinCell
+
+const mapState = state => {
+  return {
+    watchlist: state.watchlist.assets,
+    user: state.user
+  }
+}
+
+const mapDispatch = dispatch => {
+  return {
+    addToWatchlist: data => dispatch(addToWatchlist(data)),
+    removeFromWatchlist: data => dispatch(removeFromWatchlist(data))
+  }
+}
+export default connect(mapState, mapDispatch)(CoinCell)
