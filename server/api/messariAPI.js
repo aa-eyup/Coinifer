@@ -85,17 +85,17 @@ router.get('/coins/:coinId/profile', async (req, res, next) => {
         }
       )
     ).data.data
-    const filtered = {
-      symbol: profileDataKey.symbol,
-      contributors: profileDataKey.profile.contributors.organizations.map(
-        org => org.name
-      ),
-      investors: profileDataKey.profile.investors.organizations.map(
-        inv => inv.name
-      ),
-      ecosystem: profileDataKey.profile.ecosystem
-    }
-    res.status(200).send(filtered)
+    // const filtered = {
+    //   symbol: profileDataKey.symbol,
+    //   contributors: profileDataKey.profile.contributors.organizations.map(
+    //     org => org.name
+    //   ),
+    //   investors: profileDataKey.profile.investors.organizations.map(
+    //     inv => inv.name
+    //   ),
+    //   ecosystem: profileDataKey.profile.ecosystem
+    // }
+    res.status(200).send(profileDataKey)
   } catch (error) {
     next(error)
   }

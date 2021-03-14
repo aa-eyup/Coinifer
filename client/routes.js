@@ -36,7 +36,7 @@ class Routes extends Component {
               render={routProps => <UserProfile {...routProps} />}
             /> */}
             <Route
-              path="/coins/:coinId/profile"
+              path="/coins/:coinSymbol/profile"
               render={routProps => <SingleCoin {...routProps} />}
             />
             <Route path="/user/watchlist" component={UserHome} />
