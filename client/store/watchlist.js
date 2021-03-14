@@ -27,7 +27,6 @@ const getWatchlist = data => {
 
 // thunk
 export const addToWatchlist = data => {
-  console.log('add to watchlist running -------------------')
   return async dispatch => {
     try {
       await axios.post(`/api/watchlistAPI/users/${data.userId}`, data)
@@ -42,7 +41,6 @@ export const removeFromWatchlist = data => {
     try {
       await axios.put(`/api/watchlistAPI/users/${data.userId}`, data)
       dispatch(_removeFromWatchlist(data))
-      console.log('remove from watchlist running -------------------', data)
     } catch (error) {
       console.log(error)
     }
@@ -52,6 +50,8 @@ export const fetchWatchlist = userId => {
   return async dispatch => {
     try {
       const assets = (await axios.get(`/api/watchlistAPI/users/${userId}`)).data
+      // will transform name of prop when passing into coin cell
+      // imageUrl -> thumb
       dispatch(getWatchlist(assets))
     } catch (error) {
       console.log(error)
@@ -74,7 +74,8 @@ export default function(state = initialState, action) {
           ...state.assets,
           {
             assetName: action.data.assetName,
-            assetSymbol: action.data.assetSymbol
+            assetSymbol: action.data.assetSymbol,
+            thumb: action.data.imageUrl
           }
         ]
       }

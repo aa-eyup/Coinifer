@@ -10,6 +10,9 @@ const Watchlist = db.define('watchlist', {
   },
   assetName: {
     type: Sequelize.STRING
+  },
+  imageUrl: {
+    type: Sequelize.STRING
   }
 })
 

@@ -55,7 +55,8 @@ const CoinCell = props => {
                     props.addToWatchlist({
                       userId: props.user.id,
                       assetName: crypto.name,
-                      assetSymbol: crypto.symbol
+                      assetSymbol: crypto.symbol,
+                      imageUrl: crypto.image ? crypto.image.small : crypto.thumb
                     })
                   }
                 >

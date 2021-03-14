@@ -12,7 +12,6 @@ class Watchlist extends React.Component {
 
   render() {
     const assets = this.props.watchlist
-    //console.log('assets from Coingrid ----------------------', assets)
     if (assets) {
       return (
         <main id="container">
@@ -23,7 +22,8 @@ class Watchlist extends React.Component {
                 crypto={{
                   symbol: crypto.assetSymbol,
                   name: crypto.assetName,
-                  id: crypto.assetName.toLowerCase()
+                  id: crypto.assetName.toLowerCase(),
+                  thumb: crypto.imageUrl
                 }}
               />
             ))}

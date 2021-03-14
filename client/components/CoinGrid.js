@@ -17,7 +17,6 @@ class CoinGrid extends React.Component {
 
   render() {
     const assets = this.props.marketCapPage
-    //console.log('assets from Coingrid ----------------------', assets)
     if (assets) {
       return (
         <main id="container">

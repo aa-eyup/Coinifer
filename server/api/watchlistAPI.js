@@ -10,7 +10,7 @@ router.get('/users/:userId', async (req, res, next) => {
     const userId = req.user.id
     if (userId) {
       const assets = await Watchlist.findAll({
-        attributes: ['assetName', 'assetSymbol'],
+        attributes: ['assetName', 'assetSymbol', 'imageUrl'],
         where: {
           userId: userId
         }
@@ -28,12 +28,15 @@ router.post('/users/:userId', async (req, res, next) => {
   try {
     const {userId} = req.params
     if (userId) {
-      const {assetSymbol, assetName} = req.body
+      const {assetSymbol, assetName, imageUrl} = req.body
       const [item, wasCreated] = await Watchlist.findOrCreate({
         where: {
           userId: userId,
           assetSymbol: assetSymbol,
           assetName: assetName
+        },
+        defaults: {
+          imageUrl: imageUrl
         }
       })
       if (wasCreated) {
