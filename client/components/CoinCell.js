@@ -45,7 +45,7 @@ const CoinCell = props => {
                     <p className="watchlist-icon">
                       <strong>-</strong>
                     </p>
-                    <p className="watchlist-msg">Remove from watchlist</p>
+                    <p className="watchlist-msg tag">Remove from watchlist</p>
                   </figure>
                 </div>
               ) : (
@@ -65,7 +65,7 @@ const CoinCell = props => {
                     <p className="watchlist-icon">
                       <strong>+</strong>
                     </p>
-                    <p className="watchlist-msg">Add to watchlist</p>
+                    <p className="watchlist-msg tag">Add to watchlist</p>
                   </figure>
                 </div>
               )
