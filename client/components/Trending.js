@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {fetchTrending} from '../store/apiDataStore'
 import CoinCell from './CoinCell'
+import {fetchWatchlist} from '../store/watchlist'
 
 class Trending extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class Trending extends React.Component {
   }
 
   componentDidMount() {
+    this.props.fetchWatchlist()
     this.props.fetchTrending()
   }
 
@@ -40,13 +42,15 @@ class Trending extends React.Component {
 
 const mapState = state => {
   return {
-    trending: state.apiData.trending
+    trending: state.apiData.trending,
+    user: state.user
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    fetchTrending: () => dispatch(fetchTrending())
+    fetchTrending: () => dispatch(fetchTrending()),
+    fetchWatchlist: () => dispatch(fetchWatchlist())
   }
 }
 

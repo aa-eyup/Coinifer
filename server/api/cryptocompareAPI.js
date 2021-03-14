@@ -24,7 +24,7 @@ router.get('/coins/:symbol/long-term-vwap', async (req, res, next) => {
       )
       let tpv = 0
       let cumulativeVolume = 0
-      for (let i = 0; i < dayCount; i++) {
+      for (let i = 1; i <= dayCount; i++) {
         cumulativeVolume += volume[i]
         tpv += volume[i] * typicalPrice[i]
       }

@@ -5,10 +5,12 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import apiData from './apiDataStore'
 import spiderChartData from './spiderChartStore'
+import watchlist from './watchlist'
 
 const reducer = combineReducers({
   user,
   apiData,
+  watchlist,
   spiderChartData
 })
 

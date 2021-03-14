@@ -1,21 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {fetchTopOneHundred, fetchMarketCapPage} from '../store/apiDataStore'
 import CoinCell from './CoinCell'
 import PaginationNavbar from './PaginationNavbar'
 import ReactLoading from 'react-loading'
+import {fetchTopOneHundred, fetchMarketCapPage} from '../store/apiDataStore'
+import {fetchWatchlist} from '../store/watchlist'
 
 class CoinGrid extends React.Component {
-  componentDidMount() {
+  async componentDidMount() {
     const {pageNumber} = this.props.match.params
     //this.props.fetchTopOneHundred(pageNumber)
-    this.props.fetchMarketCapPage(pageNumber)
+    await this.props.fetchWatchlist(this.props.user.id)
+    await this.props.fetchMarketCapPage(pageNumber)
   }
 
   render() {
     const assets = this.props.marketCapPage
-    console.log('assets from Coingrid ----------------------', assets)
+    //console.log('assets from Coingrid ----------------------', assets)
     if (assets) {
       return (
         <main id="container">
@@ -50,14 +52,16 @@ class CoinGrid extends React.Component {
 const mapState = state => {
   return {
     marketCapPage: state.apiData.marketCapPage,
-    topOneHundred: state.apiData.topOneHundred
+    topOneHundred: state.apiData.topOneHundred,
+    user: state.user
   }
 }
 
 const mapDispatch = dispatch => {
   return {
     fetchTopOneHundred: pageNumber => dispatch(fetchTopOneHundred(pageNumber)),
-    fetchMarketCapPage: pageNumber => dispatch(fetchMarketCapPage(pageNumber))
+    fetchMarketCapPage: pageNumber => dispatch(fetchMarketCapPage(pageNumber)),
+    fetchWatchlist: userId => dispatch(fetchWatchlist(userId))
   }
 }
 

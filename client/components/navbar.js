@@ -55,7 +55,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
 
                   <div className="navbar-dropdown is-right">
                     <Link
-                      to="/user/profile"
+                      to="/user/watchlist"
                       className="navbar-item has-text-black desktop"
                     >
                       My Watchlist

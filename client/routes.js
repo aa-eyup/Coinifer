@@ -10,8 +10,8 @@ import CoinGrid from './components/CoinGrid'
 import Trending from './components/Trending'
 
 class Routes extends Component {
-  componentDidMount() {
-    this.props.loadInitialData()
+  async componentDidMount() {
+    await this.props.loadInitialData()
   }
 
   render() {
@@ -39,7 +39,7 @@ class Routes extends Component {
               path="/coins/:coinId/profile"
               render={routProps => <SingleCoin {...routProps} />}
             />
-            <Route path="/user/profile" component={UserHome} />
+            <Route path="/user/watchlist" component={UserHome} />
           </Switch>
         )}
         <Route path="/">

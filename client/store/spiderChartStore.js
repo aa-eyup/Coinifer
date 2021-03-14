@@ -19,7 +19,6 @@ export const fetchSpiderChartData = (symbol, id) => {
         .data
       let name = id ? id : messariData.slug
       const cgcData = (await axios.get(`/api/cgcAPI/coins/${name}`)).data
-      console.log(cgcData)
       const vwap = (
         await axios.get(
           `/api/cryptocompareAPI/coins/${symbol.toUpperCase()}/long-term-vwap`

@@ -23,3 +23,26 @@
   box-shadow: 0 0.5em 0.5em -0.4em rgb(36, 225, 96);
   transform: translateY(-0.25em);
 }
+.watchlist-msg {
+  position: absolute;
+  color: black;
+  top: -25px;
+  right: 20px;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+.watchlist-button:hover + .watchlist-msg {
+  opacity: 1;
+  display: block;
+}
+.watchlist-icon {
+  color: white;
+  font-size: larger;
+}
+.watchlist-button {
+  transition: opacity 0.2s, visibility 0.2s;
+}
+.watchlist-button:hover {
+  opacity: 0.75;
+}

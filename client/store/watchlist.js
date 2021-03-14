@@ -3,6 +3,7 @@ import axios from 'axios'
 // action type
 const ADD_TO_WATCHLIST = 'ADD_TO_WATCHLIST'
 const REMOVE_FROM_WATCHLIST = 'REMOVE_FROM_WATCHLIST'
+const GET_WATCHLIST = 'GET_WATCHLIST'
 
 // action creator
 const _addToWatchlist = data => {
@@ -13,15 +14,23 @@ const _addToWatchlist = data => {
 }
 const _removeFromWatchlist = data => {
   return {
-    type: ADD_TO_WATCHLIST,
+    type: REMOVE_FROM_WATCHLIST,
     data
   }
 }
+const getWatchlist = data => {
+  return {
+    type: GET_WATCHLIST,
+    data
+  }
+}
+
 // thunk
 export const addToWatchlist = data => {
+  console.log('add to watchlist running -------------------')
   return async dispatch => {
     try {
-      await axios.post(`/api/watchlistAPI/users/${data.userid}`, data)
+      await axios.post(`/api/watchlistAPI/users/${data.userId}`, data)
       dispatch(_addToWatchlist(data))
     } catch (error) {
       console.log(error)
@@ -31,8 +40,19 @@ export const addToWatchlist = data => {
 export const removeFromWatchlist = data => {
   return async dispatch => {
     try {
-      await axios.delete(`/api/watchlistAPI/users/${data.userid}`, data)
+      await axios.put(`/api/watchlistAPI/users/${data.userId}`, data)
       dispatch(_removeFromWatchlist(data))
+      console.log('remove from watchlist running -------------------', data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+export const fetchWatchlist = userId => {
+  return async dispatch => {
+    try {
+      const assets = (await axios.get(`/api/watchlistAPI/users/${userId}`)).data
+      dispatch(getWatchlist(assets))
     } catch (error) {
       console.log(error)
     }
@@ -45,13 +65,15 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case GET_WATCHLIST:
+      return {...state, assets: action.data}
     case ADD_TO_WATCHLIST:
       return {
         ...state,
         assets: [
           ...state.assets,
           {
-            assetname: action.data.assetName,
+            assetName: action.data.assetName,
             assetSymbol: action.data.assetSymbol
           }
         ]
@@ -61,8 +83,8 @@ export default function(state = initialState, action) {
         ...state,
         assets: state.assets.filter(
           asset =>
-            asset.name !== action.data.assetName &&
-            asset.symbol !== action.data.assetSymbol
+            asset.assetName !== action.data.assetName &&
+            asset.assetSymbol !== action.data.assetSymbol
         )
       }
     default:
