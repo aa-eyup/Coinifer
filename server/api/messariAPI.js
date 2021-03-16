@@ -42,24 +42,10 @@ router.get('/coins/:coinId', async (req, res, next) => {
         }
       )
     ).data
-    const responseNVT = (
-      await axios.get(
-        `https://data.messari.io/api/v1/assets/${coinId}/metrics/nvt-adj/time-series?start=${start}&end=${end}&interval=1d`,
-        {
-          headers: {
-            'x-messari-api-key': `${process.env.MESSARI_API_KEY}`
-          }
-        }
-      )
-    ).data.data.values
 
-    const maNVT = responseNVT
-      ? responseNVT.reduce((acc, arr) => acc + arr[1], 0) / responseNVT.length
-      : null
-    const data = {...assetMetricsKey.data, maNVT}
+    const data = {...assetMetricsKey.data}
     const filtered = {
       slug: data.slug,
-      nvtScore: nvtTransformation(data.maNVT),
       retentionScore: retentionScoreCalculator(
         data.marketcap.volume_turnover_last_24_hours_percent
       ),

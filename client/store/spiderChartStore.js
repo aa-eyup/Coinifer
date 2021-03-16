@@ -24,7 +24,12 @@ export const fetchSpiderChartData = (symbol, id) => {
           `/api/cryptocompareAPI/coins/${symbol.toUpperCase()}/long-term-vwap`
         )
       ).data.vwap
-      const data = {messariData, cgcData, vwap}
+      const nvt = (
+        await axios.get(
+          `/api/cryptocompareAPI/coins/${symbol.toUpperCase()}/nvt`
+        )
+      ).data.nvt
+      const data = {messariData, cgcData, vwap, nvt}
       dispatch(getSpiderChartData({symbol, data}))
     } catch (error) {
       console.log(error)
@@ -54,7 +59,7 @@ export default function(state = initialState, action) {
           [action.data.symbol]: {
             slug: data.messariData.slug,
             vwap: vwapTransformation(data.cgcData.currentPrice, data.vwap),
-            nvtScore: data.messariData.nvtScore,
+            nvtScore: Math.min(data.nvt, 100),
             sharpeRatioObj: data.messariData.sharpeRatio,
             retentionScore: data.messariData.retentionScore,
             liquidityScore: data.cgcData.liquidityScore,
