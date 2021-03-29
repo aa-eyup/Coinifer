@@ -45,6 +45,9 @@ class Routes extends Component {
             </Route>
           </Switch>
         )}
+        <Route path="/">
+          <Redirect to="/trending" />
+        </Route>
         {/* Displays our Login component as a fallback */}
         <Route component={UserHome} />
       </Switch>

@@ -63,7 +63,11 @@ router.get('/coins/:symbol/nvt', async (req, res, next) => {
               (day.transaction_count * day.average_transaction_value),
           0
         ) / data.length
-
+      // const daily = data.map(
+      //   day =>
+      //     day.current_supply /
+      //     (day.transaction_count * day.average_transaction_value)
+      // )
       //res.status(200).send({data, priceData})
       res.status(200).send({nvt: nvt})
     } else {

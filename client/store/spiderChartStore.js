@@ -46,6 +46,11 @@ const vwapTransformation = (currentPrice, vwap) => {
     return Math.min(50 + pDelta, 100)
   }
 }
+const nvtTransformation = nvt => {
+  const upperThreshold = 150
+  nvt = nvt * 10
+  return nvt
+}
 const initialState = {}
 
 export default function(state = initialState, action) {
@@ -59,7 +64,7 @@ export default function(state = initialState, action) {
           [action.data.symbol]: {
             slug: data.messariData.slug,
             vwap: vwapTransformation(data.cgcData.currentPrice, data.vwap),
-            nvtScore: Math.min(data.nvt, 100),
+            nvtScore: nvtTransformation(data.nvt),
             sharpeRatioObj: data.messariData.sharpeRatio,
             retentionScore: data.messariData.retentionScore,
             liquidityScore: data.cgcData.liquidityScore,

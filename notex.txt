@@ -6,8 +6,6 @@ total_volume_quote and _base are the sum of all trades across all markets where 
 90 day MA
 similar to Price/Sales of a payment processing company
 nvt = mkt cap / on-chain txn value
-rolling average of end-start = 604800000 (7 day period)
-transformation = Math.max(0, 1 - nvt / 150) * 100
 daily txn value >= 150*mktcap => overheating
 daily txn value < 70 => undervalued
 
