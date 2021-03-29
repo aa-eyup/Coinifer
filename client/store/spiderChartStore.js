@@ -47,9 +47,13 @@ const vwapTransformation = (currentPrice, vwap) => {
   }
 }
 const nvtTransformation = nvt => {
+  if (nvt === 0) return null
   const upperThreshold = 150
-  nvt = nvt * 10
-  return nvt
+  const lowerThreshold = 70
+  const min = Math.min(upperThreshold, nvt)
+  const score =
+    ((upperThreshold - min) / (upperThreshold - lowerThreshold)) * 100
+  return Math.min(score, 100)
 }
 const initialState = {}
 
