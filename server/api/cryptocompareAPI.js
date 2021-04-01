@@ -38,38 +38,20 @@ router.get('/coins/:symbol/long-term-vwap', async (req, res, next) => {
 router.get('/coins/:symbol/nvt', async (req, res, next) => {
   try {
     const {symbol} = req.params
-
-    const data = (
-      await axios.get(
-        `https://min-api.cryptocompare.com/data/blockchain/histo/day?limit=91&fsym=${symbol}`,
-        {
-          headers: {
-            authorization: `Apikey ${process.env.CRYPTOCOMPARE_API_KEY}`
-          }
-        }
-      )
-    ).data.Data.Data
-    // const priceData = (
-    //   await axios.get(
-    //     `https://min-api.cryptocompare.com/data/v2/histoday?tsym=USD&limit=91&fsym=${symbol}`
-    //   )
-    // ).data.Data.Data.slice(0, 90)
-    if (data && data.length > 0) {
-      const nvt =
-        data.reduce(
-          (acc, day) =>
-            acc +
-            day.current_supply /
-              (day.transaction_count * day.average_transaction_value),
-          0
-        ) / data.length
-      // const daily = data.map(
-      //   day =>
-      //     day.current_supply /
-      //     (day.transaction_count * day.average_transaction_value)
-      // )
-      //res.status(200).send({data, priceData})
-      res.status(200).send({nvt: nvt})
+    let data
+    let mostRecent
+    try {
+      data = (
+        await axios.get(
+          `https://community-api.coinmetrics.io/v4/timeseries/asset-metrics?assets=${symbol}&metrics=NVTAdj90&frequency=1d`
+        )
+      ).data.data
+      mostRecent = data[data.length - 1].NVTAdj90
+    } catch (error) {
+      data = null
+    }
+    if (data && data.length > 0 && mostRecent) {
+      res.status(200).send({nvt: mostRecent})
     } else {
       res.status(200).send({nvt: null})
     }

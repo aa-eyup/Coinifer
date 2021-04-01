@@ -3,7 +3,7 @@ volume data from crypto compare:
 total_volume_quote and _base are the sum of all trades across all markets where the asset/coin was either the fsym/base or the tsym/quote/counter
 
 ***- NVT (network value to txns ratio): network value (mkt cap) / daily txn value
-90 day MA
+The ratio of the network value (or market capitalization, current supply) to the 90-day moving average of the adjusted transfer value (adjusted for on-chain transfers).
 similar to Price/Sales of a payment processing company
 nvt = mkt cap / on-chain txn value
 daily txn value >= 150*mktcap => overheating
