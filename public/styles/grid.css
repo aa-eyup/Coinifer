@@ -32,8 +32,8 @@
   opacity: 0;
   transition: opacity 0.2s, visibility 0.2s;
 }
-.watchlist-button:hover + .watchlist-msg {
-  opacity: 1;
+.watchlist-button:hover .watchlist-msg {
+  opacity: 0.8;
   display: block;
 }
 .watchlist-icon {

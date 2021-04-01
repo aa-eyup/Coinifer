@@ -5,7 +5,7 @@ const GET_MESSARI_DATA = 'GET_MESSARI_DATA'
 const GET_TOP100_DATA = 'GET_TOP100_COINPAPER'
 const GET_MARKETCAP_PAGE = 'GET_MARKETCAP_PAGE'
 const GET_SINGLE_COIN = 'GET_SINGLE_COIN'
-const GET_MESSARI_PROFILE = 'GET_MESSARI_PROFILE'
+const GET_PROFILE = 'GET_PROFILE'
 const GET_TRENDING = 'GET_TRENDING'
 
 // action creator
@@ -28,9 +28,9 @@ const getSingleCoin = data => {
     data
   }
 }
-const getMessariProfile = data => {
+const getProfile = data => {
   return {
-    type: GET_MESSARI_PROFILE,
+    type: GET_PROFILE,
     data
   }
 }
@@ -90,11 +90,12 @@ export const fetchSingleCoin = id => {
     }
   }
 }
-export const fetchMessariProfile = id => {
+export const fetchProfile = id => {
   return async dispatch => {
     try {
       const data = (await axios.get(`/api/messariAPI/coins/${id}/profile`)).data
-      dispatch(getMessariProfile(data))
+      // integrate cgc single asset data (need to pass in asset name vs. symbol for messari)
+      dispatch(getProfile(data))
     } catch (error) {
       console.log(error)
     }
@@ -137,8 +138,8 @@ export default function(state = initialState, action) {
       return {...state, marketCapPage: state.topOneHundred[action.pageNumber]}
     case GET_SINGLE_COIN:
       return {...state, singleCoin: action.data}
-    case GET_MESSARI_PROFILE:
-      return {...state, messariProfile: action.data}
+    case GET_PROFILE:
+      return {...state, profile: action.data}
     case GET_TRENDING:
       return {...state, trending: action.data}
     default:

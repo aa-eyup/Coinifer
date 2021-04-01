@@ -20,7 +20,10 @@ const CoinCell = props => {
             <div className="media-content">
               <p className="title is-6">
                 <Link
-                  to={`/coins/${crypto.symbol}/profile`}
+                  to={{
+                    pathname: `/coins/${crypto.symbol}/profile`,
+                    state: {id: crypto.id}
+                  }}
                 >{`${crypto.name}`}</Link>
               </p>
             </div>
@@ -45,7 +48,7 @@ const CoinCell = props => {
                     <p className="watchlist-icon">
                       <strong>-</strong>
                     </p>
-                    <p className="watchlist-msg">Remove from watchlist</p>
+                    <p className="watchlist-msg tag">Remove from watchlist</p>
                   </figure>
                 </div>
               ) : (
@@ -65,7 +68,7 @@ const CoinCell = props => {
                     <p className="watchlist-icon">
                       <strong>+</strong>
                     </p>
-                    <p className="watchlist-msg">Add to watchlist</p>
+                    <p className="watchlist-msg tag">Add to watchlist</p>
                   </figure>
                 </div>
               )

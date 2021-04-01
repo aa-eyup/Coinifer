@@ -36,7 +36,7 @@ class Routes extends Component {
               render={routProps => <UserProfile {...routProps} />}
             /> */}
             <Route
-              path="/coins/:coinId/profile"
+              path="/coins/:coinSymbol/profile"
               render={routProps => <SingleCoin {...routProps} />}
             />
             <Route path="/user/watchlist" component={UserHome} />
@@ -45,6 +45,9 @@ class Routes extends Component {
             </Route>
           </Switch>
         )}
+        <Route path="/">
+          <Redirect to="/trending" />
+        </Route>
         {/* Displays our Login component as a fallback */}
         <Route component={UserHome} />
       </Switch>
