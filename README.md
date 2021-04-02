@@ -7,26 +7,25 @@ The normalized data is used to populate a react-highcharts radar chart (the larg
 ### Metric Categories
 The following metrics were chosen to reflect a well-rounded evaluation of each asset, including both qualitative and quantitative data. 
 
-- Valuation (NVT: Network Value to Transaction Value)
-           - NVT = current_supply / #_of_transactions_per_day x avg_transaction_value
-           - a ratio of 150 is treated as the upperbound (yields a score of 0/100)
-           - a ratio of 70 is treated as the lowerbound (yields a score of 100/100)
+#### Valuation (NVT: Network Value to Transaction Value)
+* NVT = current_supply / #_of_transactions_per_day x avg_transaction_value
+* ratio of 150 is treated as the upperbound (yields a score of 0/100)
+* ratio of 70 is treated as the lowerbound (yields a score of 100/100)
 
-* Current Price vs VWAP (VWAP is calculated as the average of a daily tick's high, open, close)
-** a score above 50 indicates current price is below the 7-day moving average VWAP 
-** a score below 50 indicates the current price is above the 7-day moving average VWAP
+#### Current Price vs VWAP (VWAP is calculated as the average of a daily tick's high, open, close)
+* score above 50 indicates current price is below the 7-day moving average VWAP 
+* score below 50 indicates the current price is above the 7-day moving average VWAP
 
-* Volume Retention
-A higher retention rate may indicate investors/speculators are trading lower proportions of the liquid market capitalization.
+#### Volume Retention
+* higher retention rate may indicate investors/speculators are trading lower proportions of the liquid market capitalization.
 
-* Liquidty Score
-** Score calculated by CoinGecko
+#### Liquidty Score
+* score calculated by CoinGecko
 
-* Social Score
-** Score calculated by CoinGecko (evaluating the asset's twitter, reddit, facebook follower base)
-
-* Developer Community
-** Score calculated by CoinGecko (evaluating number of commits and contributors on GitHub)
+#### Social Score
+* score calculated by CoinGecko (evaluating the asset's twitter, reddit, facebook follower base)
+Developer Community
+* score calculated by CoinGecko (evaluating number of commits and contributors on GitHub)
 
 ### Current API Limitations
 
