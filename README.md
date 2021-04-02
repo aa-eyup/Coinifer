@@ -7,10 +7,10 @@ The normalized data is used to populate a react-highcharts radar chart (the larg
 ### Metric Categories
 The following metrics were chosen to reflect a well-rounded evaluation of each asset, including both qualitative and quantitative data. 
 
-Markup: * Valuation (NVT: Network Value to Transaction Value)
-          * NVT = current_supply / #_of_transactions_per_day x avg_transaction_value
-* a ratio of 150 is treated as the upperbound (yields a score of 0/100)
-* a ratio of 70 is treated as the lowerbound (yields a score of 100/100)
+Markup: - Valuation (NVT: Network Value to Transaction Value)
+           - NVT = current_supply / #_of_transactions_per_day x avg_transaction_value
+           - a ratio of 150 is treated as the upperbound (yields a score of 0/100)
+           - a ratio of 70 is treated as the lowerbound (yields a score of 100/100)
 
 * Current Price vs VWAP (VWAP is calculated as the average of a daily tick's high, open, close)
 ** a score above 50 indicates current price is below the 7-day moving average VWAP 
