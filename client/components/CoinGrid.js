@@ -11,7 +11,6 @@ class CoinGrid extends React.Component {
   async componentDidMount() {
     const {pageNumber} = this.props.match.params
     //this.props.fetchTopOneHundred(pageNumber)
-    await this.props.fetchWatchlist(this.props.user.id)
     await this.props.fetchMarketCapPage(pageNumber)
   }
 
@@ -59,8 +58,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     fetchTopOneHundred: pageNumber => dispatch(fetchTopOneHundred(pageNumber)),
-    fetchMarketCapPage: pageNumber => dispatch(fetchMarketCapPage(pageNumber)),
-    fetchWatchlist: userId => dispatch(fetchWatchlist(userId))
+    fetchMarketCapPage: pageNumber => dispatch(fetchMarketCapPage(pageNumber))
   }
 }
 

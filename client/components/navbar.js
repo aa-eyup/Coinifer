@@ -31,12 +31,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             >
               <p>Top 100 by Market Cap</p>
             </Link>
-            <Link
-              to="/graph"
-              className="navbar-item center has-text-black desktop"
-            >
-              <p>Crypto Market Visualizer</p>
-            </Link>
           </div>
           <div className="column right">
             {/* {isLoggedIn ? (
@@ -63,7 +57,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
                     <hr className="navbar-divider" />
                     {/* <a className="navbar-item">Contact</a> */}
                     <Link
-                      to="/about"
+                      to="/methodology"
                       className="navbar-item right has-text-black desktop"
                     >
                       <p>Coinifer Methodology</p>

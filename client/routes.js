@@ -8,6 +8,7 @@ import {me} from './store'
 import SingleCoin from './components/SingleCoin'
 import CoinGrid from './components/CoinGrid'
 import Trending from './components/Trending'
+import Methodology from './components/Methodology'
 
 class Routes extends Component {
   async componentDidMount() {
@@ -27,6 +28,7 @@ class Routes extends Component {
           render={routProps => <CoinGrid {...routProps} />}
         />
         <Route path="/trending" component={Trending} />
+        <Route path="/methodology" component={Methodology} />
         {/* <Route path="/graph" component={} /> */}
         {isLoggedIn && (
           <Switch>
