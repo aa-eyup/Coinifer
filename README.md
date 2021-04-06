@@ -21,6 +21,7 @@ The following metrics were chosen to reflect a well-rounded evaluation of each a
 
 ##### Liquidty Score
 * score calculated by CoinGecko
+* score influenced by bid/ask spread, volume
 
 ##### Social Score
 * score calculated by CoinGecko (evaluating the asset's twitter, reddit, facebook follower base)
