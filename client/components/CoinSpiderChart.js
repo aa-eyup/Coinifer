@@ -1,26 +1,26 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import ReactLoading from 'react-loading'
-import {fetchSpiderChartData} from '../store/spiderChartStore'
-import Highcharts from 'highcharts'
-import HighchartsMore from 'highcharts/highcharts-more'
-import HighchartsReact from 'highcharts-react-official'
+import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import ReactLoading from 'react-loading';
+import {fetchSpiderChartData} from '../store/spiderChartStore';
+import Highcharts from 'highcharts';
+import HighchartsMore from 'highcharts/highcharts-more';
+import HighchartsReact from 'highcharts-react-official';
 //import Exporting from 'highcharts/modules/exporting'
 //Exporting(Highcharts)
-HighchartsMore(Highcharts)
+HighchartsMore(Highcharts);
 
 class SpiderChart extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       dataAvailable: true
-    }
+    };
   }
   componentDidMount() {
     // do not send API request if already in state
     if (!this.props.spiderChartData[this.props.symbol]) {
-      this.props.fetchSpiderChartData(this.props.symbol, this.props.id)
+      this.props.fetchSpiderChartData(this.props.symbol, this.props.id);
     }
     if (this.state.dataAvailable) {
       this.timer = setTimeout(
@@ -30,12 +30,12 @@ class SpiderChart extends React.Component {
             dataAvailable: !state.dataAvailable
           })),
         5000
-      )
+      );
     }
   }
 
   render() {
-    const data = this.props.spiderChartData[this.props.symbol]
+    const data = this.props.spiderChartData[this.props.symbol];
     if (data) {
       return (
         <figure className="highcharts-figure">
@@ -108,7 +108,7 @@ class SpiderChart extends React.Component {
             />
           </div>
         </figure>
-      )
+      );
     } else {
       return this.state.dataAvailable ? (
         <div className="center">
@@ -121,7 +121,7 @@ class SpiderChart extends React.Component {
         </div>
       ) : (
         <div>data not supported at this time</div>
-      )
+      );
     }
   }
 }
@@ -129,14 +129,14 @@ class SpiderChart extends React.Component {
 const mapState = state => {
   return {
     spiderChartData: state.spiderChartData
-  }
-}
+  };
+};
 
 const mapDispatch = dispatch => {
   return {
     fetchSpiderChartData: (symbol, id) =>
       dispatch(fetchSpiderChartData(symbol, id))
-  }
-}
+  };
+};
 
-export default connect(mapState, mapDispatch)(SpiderChart)
+export default connect(mapState, mapDispatch)(SpiderChart);
