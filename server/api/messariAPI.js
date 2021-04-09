@@ -1,37 +1,37 @@
 // base path: /api/messariAPI
 
-const router = require('express').Router()
-module.exports = router
-const got = require('got')
-const axios = require('axios')
+const router = require('express').Router();
+module.exports = router;
+const got = require('got');
+const axios = require('axios');
 
 //  HELPER FUNCTIONS ---------------------------------------------------------
 const nvtTransformation = nvt => {
   if (nvt) {
-    return Math.max(0, 1 - nvt / 150) * 100
+    return Math.max(0, 1 - nvt / 150) * 100;
   } else {
-    return 0
+    return 0;
   }
-}
+};
 
 const retentionScoreCalculator = turnover => {
-  return turnover ? 100 - turnover : 0
-}
+  return turnover ? 100 - turnover : 0;
+};
 // --------------------------------------------------------------------------------
 router.get('/', async (req, res, next) => {
   try {
-    const data = await got.get('https://data.messari.io/api/v2/assets').json()
-    res.status(200).send(data.data)
+    const data = await got.get('https://data.messari.io/api/v2/assets').json();
+    res.status(200).send(data.data);
   } catch (error) {
-    next(error)
+    next(error);
   }
-})
+});
 
 router.get('/coins/:coinId', async (req, res, next) => {
   try {
-    const {coinId} = req.params
-    const end = Date.now()
-    const start = end - 604800000
+    const {coinId} = req.params;
+    const end = Date.now();
+    const start = end - 604800000;
     const assetMetricsKey = (
       await axios.get(
         `https://data.messari.io/api/v1/assets/${coinId}/metrics`,
@@ -41,25 +41,25 @@ router.get('/coins/:coinId', async (req, res, next) => {
           }
         }
       )
-    ).data
+    ).data;
 
-    const data = {...assetMetricsKey.data}
+    const data = {...assetMetricsKey.data};
     const filtered = {
       slug: data.slug,
       retentionScore: retentionScoreCalculator(
         data.marketcap.volume_turnover_last_24_hours_percent
       ),
       sharpeRatio: data.risk_metrics.sharpe_ratios
-    }
-    res.status(200).send(filtered)
+    };
+    res.status(200).send(filtered);
   } catch (error) {
-    next(error)
+    next(error);
   }
-})
+});
 
 router.get('/coins/:coinId/profile', async (req, res, next) => {
   try {
-    const {coinId} = req.params
+    const {coinId} = req.params;
 
     const profileDataKey = (
       await axios.get(
@@ -70,7 +70,7 @@ router.get('/coins/:coinId/profile', async (req, res, next) => {
           }
         }
       )
-    ).data.data
+    ).data.data;
     // const filtered = {
     //   symbol: profileDataKey.symbol,
     //   contributors: profileDataKey.profile.contributors.organizations.map(
@@ -81,8 +81,8 @@ router.get('/coins/:coinId/profile', async (req, res, next) => {
     //   ),
     //   ecosystem: profileDataKey.profile.ecosystem
     // }
-    res.status(200).send(profileDataKey)
+    res.status(200).send(profileDataKey);
   } catch (error) {
-    next(error)
+    next(error);
   }
-})
+});

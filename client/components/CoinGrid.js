@@ -1,21 +1,21 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import CoinCell from './CoinCell'
-import PaginationNavbar from './PaginationNavbar'
-import ReactLoading from 'react-loading'
-import {fetchTopOneHundred, fetchMarketCapPage} from '../store/apiDataStore'
-import {fetchWatchlist} from '../store/watchlist'
+import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import CoinCell from './CoinCell';
+import PaginationNavbar from './PaginationNavbar';
+import ReactLoading from 'react-loading';
+import {fetchTopOneHundred, fetchMarketCapPage} from '../store/apiDataStore';
+import {fetchWatchlist} from '../store/watchlist';
 
 class CoinGrid extends React.Component {
   async componentDidMount() {
-    const {pageNumber} = this.props.match.params
+    const {pageNumber} = this.props.match.params;
     //this.props.fetchTopOneHundred(pageNumber)
-    await this.props.fetchMarketCapPage(pageNumber)
+    await this.props.fetchMarketCapPage(pageNumber);
   }
 
   render() {
-    const assets = this.props.marketCapPage
+    const assets = this.props.marketCapPage;
     if (assets) {
       return (
         <main id="container">
@@ -31,7 +31,7 @@ class CoinGrid extends React.Component {
             ))}
           </div>
         </main>
-      )
+      );
     } else {
       return (
         <div className="center">
@@ -42,7 +42,7 @@ class CoinGrid extends React.Component {
             width={50}
           />
         </div>
-      )
+      );
     }
   }
 }
@@ -52,14 +52,14 @@ const mapState = state => {
     marketCapPage: state.apiData.marketCapPage,
     topOneHundred: state.apiData.topOneHundred,
     user: state.user
-  }
-}
+  };
+};
 
 const mapDispatch = dispatch => {
   return {
     fetchTopOneHundred: pageNumber => dispatch(fetchTopOneHundred(pageNumber)),
     fetchMarketCapPage: pageNumber => dispatch(fetchMarketCapPage(pageNumber))
-  }
-}
+  };
+};
 
-export default connect(mapState, mapDispatch)(CoinGrid)
+export default connect(mapState, mapDispatch)(CoinGrid);

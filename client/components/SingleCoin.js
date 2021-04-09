@@ -1,32 +1,32 @@
 // SOME COINS FROM COINPAPER MAY NOT HAVE DATA FROM MESSARI
 // (MESSAR DATA WILL BE USED FOR SINGLE VIEW)
 
-import React from 'react'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {fetchProfile} from '../store/apiDataStore'
-import {fetchSpiderChartData} from '../store/spiderChartStore'
-import ReactLoading from 'react-loading'
+import React from 'react';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {fetchProfile} from '../store/apiDataStore';
+import {fetchSpiderChartData} from '../store/spiderChartStore';
+import ReactLoading from 'react-loading';
 
 class CryptoSingle extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = {}
+    super(props);
+    this.state = {};
   }
 
   componentDidMount() {
     // get id from props.match.params (should be coinpaper .symbol -> .toLowercase())
-    const coinSymbol = this.props.match.params.coinSymbol.toLowerCase()
+    const coinSymbol = this.props.match.params.coinSymbol.toLowerCase();
     // fetch only profile data => THE SPIDER CHART MOUNT CALLS FOR METRICS DATA
-    this.props.fetchProfile(coinSymbol)
+    this.props.fetchProfile(coinSymbol);
     // fetch cgc data using this.props.location.state.id COMBINE WITHIN fetchProfile
   }
   render() {
-    const {profile} = this.props
+    const {profile} = this.props;
     //profile.name
     // profile.profile.technology.overview
-    console.log('single', this.props.profile)
-    console.log('props', this.props.location.state)
+    console.log('single', this.props.profile);
+    console.log('props', this.props.location.state);
     if (profile && profile.slug === this.props.location.state.id) {
       return (
         <>
@@ -44,7 +44,7 @@ class CryptoSingle extends React.Component {
             </div>
           </div>
         </>
-      )
+      );
     } else {
       return (
         <div className="center">
@@ -55,7 +55,7 @@ class CryptoSingle extends React.Component {
             width={50}
           />
         </div>
-      )
+      );
     }
   }
 }
@@ -64,14 +64,14 @@ const mapState = state => {
   return {
     profile: state.apiData.profile,
     spiderChartData: state.spiderChartData
-  }
-}
+  };
+};
 
 const mapDispatch = dispatch => {
   return {
     fetchProfile: coinId => dispatch(fetchProfile(coinId)),
     fetchSpiderChartData: (symbol, id) =>
       dispatch(fetchSpiderChartData(symbol, id))
-  }
-}
-export default connect(mapState, mapDispatch)(CryptoSingle)
+  };
+};
+export default connect(mapState, mapDispatch)(CryptoSingle);

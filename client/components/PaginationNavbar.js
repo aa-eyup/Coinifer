@@ -1,9 +1,9 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import React from 'react';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 const PaginationNavbar = props => {
-  const {basepath, numberOfPages, currentPage} = props
+  const {basepath, numberOfPages, currentPage} = props;
   return (
     <nav
       className="pagination is-small is-centered"
@@ -30,6 +30,6 @@ const PaginationNavbar = props => {
         ))}
       </ul>
     </nav>
-  )
-}
-export default PaginationNavbar
+  );
+};
+export default PaginationNavbar;

@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const Methodology = props => {
-  return <div>Methodology</div>
-}
+  return <div>Methodology</div>;
+};
 
-export default Methodology
+export default Methodology;

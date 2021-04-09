@@ -1,19 +1,19 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {fetchTrending} from '../store/apiDataStore'
-import CoinCell from './CoinCell'
-import {fetchWatchlist} from '../store/watchlist'
+import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {fetchTrending} from '../store/apiDataStore';
+import CoinCell from './CoinCell';
+import {fetchWatchlist} from '../store/watchlist';
 
 class Trending extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = {}
+    super(props);
+    this.state = {};
   }
 
   componentDidMount() {
-    this.props.fetchWatchlist()
-    this.props.fetchTrending()
+    this.props.fetchWatchlist();
+    this.props.fetchTrending();
   }
 
   render() {
@@ -36,7 +36,7 @@ class Trending extends React.Component {
           </div>
         </main>
       </React.Fragment>
-    )
+    );
   }
 }
 
@@ -44,14 +44,14 @@ const mapState = state => {
   return {
     trending: state.apiData.trending,
     user: state.user
-  }
-}
+  };
+};
 
 const mapDispatch = dispatch => {
   return {
     fetchTrending: () => dispatch(fetchTrending()),
     fetchWatchlist: () => dispatch(fetchWatchlist())
-  }
-}
+  };
+};
 
-export default connect(mapState, mapDispatch)(Trending)
+export default connect(mapState, mapDispatch)(Trending);

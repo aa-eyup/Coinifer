@@ -1,12 +1,12 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
-import CoinSpiderChart from './CoinSpiderChart'
-import {addToWatchlist, removeFromWatchlist} from '../store/watchlist'
+import React from 'react';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import CoinSpiderChart from './CoinSpiderChart';
+import {addToWatchlist, removeFromWatchlist} from '../store/watchlist';
 
 const CoinCell = props => {
-  const {crypto} = props
-  console.log(crypto)
+  const {crypto} = props;
+  console.log(crypto);
   return (
     <section className="coin-cell">
       <div className="card">
@@ -84,20 +84,20 @@ const CoinCell = props => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 const mapState = state => {
   return {
     watchlist: state.watchlist.assets,
     user: state.user
-  }
-}
+  };
+};
 
 const mapDispatch = dispatch => {
   return {
     addToWatchlist: data => dispatch(addToWatchlist(data)),
     removeFromWatchlist: data => dispatch(removeFromWatchlist(data))
-  }
-}
-export default connect(mapState, mapDispatch)(CoinCell)
+  };
+};
+export default connect(mapState, mapDispatch)(CoinCell);
