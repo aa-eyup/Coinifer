@@ -26,6 +26,8 @@ The following metrics were chosen to reflect a well-rounded evaluation of each a
 ##### Social Score
 * score calculated by CoinGecko (evaluating the asset's twitter, reddit, facebook follower base)
 Developer Community
+
+##### Developer Score
 * score calculated by CoinGecko (evaluating number of commits and contributors on GitHub)
 
 ### Current API Limitations
