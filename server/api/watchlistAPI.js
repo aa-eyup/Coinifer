@@ -4,12 +4,12 @@ const router = require('express').Router();
 module.exports = router;
 const {Watchlist} = require('../db/models');
 
-router.get('/users/:userId', async (req, res, next) => {
+router.get('/users/:userId', isLoggedInUser, async (req, res, next) => {
   console.log('req.user \n', req.user);
   try {
     //const {userId} = req.params
     // use sessions user.id bc on componentDidMount, user state information is not yet populated
-    const userId = req.user.id;
+    const userId = req.params.userId;
     if (userId) {
       const assets = await Watchlist.findAll({
         attributes: ['assetName', 'assetSymbol', 'imageUrl'],

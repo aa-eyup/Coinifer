@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 import CoinCell from './CoinCell';
 import ReactLoading from 'react-loading';
 import {fetchWatchlist} from '../store/watchlist';
@@ -11,6 +12,9 @@ class Watchlist extends React.Component {
   }
 
   render() {
+    if (+this.props.match.params.userId !== +this.props.user.id) {
+      return <Redirect to="/" />;
+    }
     const assets = this.props.watchlist;
     if (assets) {
       return (
