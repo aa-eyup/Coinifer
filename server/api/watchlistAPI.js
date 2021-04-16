@@ -1,9 +1,11 @@
 // base path: /api/watchlistAPI
+const {isLoggedInUser} = require('./secruityMiddleware');
 const router = require('express').Router();
 module.exports = router;
 const {Watchlist} = require('../db/models');
 
 router.get('/users/:userId', async (req, res, next) => {
+  console.log('req.user \n', req.user);
   try {
     //const {userId} = req.params
     // use sessions user.id bc on componentDidMount, user state information is not yet populated

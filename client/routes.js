@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {Login, Signup, UserHome} from './components';
+import {Login, Signup, Watchlist} from './components';
 import {me} from './store';
 
 import SingleCoin from './components/SingleCoin';
@@ -23,6 +23,9 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route exact path="/">
+          <Redirect to="/trending" />
+        </Route>
         <Route
           path="/coins/page/:pageNumber"
           render={routProps => <CoinGrid {...routProps} />}
@@ -33,25 +36,19 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            {/* <Route
-              path="/user/profile"
-              render={routProps => <UserProfile {...routProps} />}
-            /> */}
             <Route
               path="/coins/:coinSymbol/profile"
               render={routProps => <SingleCoin {...routProps} />}
             />
-            <Route path="/user/watchlist" component={UserHome} />
-            <Route path="/">
-              <Redirect to="/user/watchlist" />
-            </Route>
+            <Route path="/user/:userId/watchlist" component={Watchlist} />
+            {/* <Route path="/">
+              <Redirect to="/user/:userId/watchlist" />
+            </Route> */}
           </Switch>
         )}
-        <Route path="/">
-          <Redirect to="/trending" />
-        </Route>
         {/* Displays our Login component as a fallback */}
-        <Route component={UserHome} />
+
+        <Route component={Watchlist} />
       </Switch>
     );
   }
